@@ -1,0 +1,41 @@
+.chg_frm {
+  height: fit-content;
+  width: fit-content;
+}
+.chg_heading {
+  padding: 0.2rem;
+  margin: 0.2rem auto 0.2rem 0.1rem;
+  font-family: var(--font_family);
+  font-size: var(--heading_font_size);
+}
+.frm {
+  margin-left: 3rem;
+}
+.frm_element {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.frm_input {
+  width: 15rem;
+  height: 2rem;
+  border: 0.01rem solid #ccc;
+  outline: none;
+  border-radius: 0.3rem;
+}
+.frm_input:focus {
+  border: 0.01rem solid var(--color);
+  outline: none;
+}
+.frm_submit {
+  background-color: var(--color);
+  color: #ffffff;
+  width: 15rem;
+  height: 2rem;
+  border: 0;
+  outline: none;
+  border-radius: 0.3rem;
+}
+.frm_submit:focus {
+    border: 0;
+    outline: none;
+}

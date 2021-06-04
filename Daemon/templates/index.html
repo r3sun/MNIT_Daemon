@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web Title</title>
+<style>
+{
+    border: 0.01rem solid red;
+}
+._left {
+    float: left;
+    margin-right: auto;
+}
+._right {
+    float: right;
+    margin-left: auto;
+}
+._full_v_h {
+    height: 100vw;
+}
+._full_v_w {
+    width: 100vw;
+}
+._vcntr {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    width: -webkit-fill-available;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+._flex_row {
+    display: flex;
+    flex-direction: row;
+}
+._flex_column {
+    display: flex;
+    flex-direction: column;
+}
+._flex_row_rev {
+    display: flex;
+    flex-direction: row-reverse;
+}
+._no-wrap {
+    display: flex;
+    flex-wrap: no-wrap;
+}
+._expand {
+    display: flex;
+}
+._collapse {
+    display: none;
+}
+header {
+    position: sticky;
+    top: 0;
+    box-shadow: 0rem 0.04rem 0.09rem #f1f1f1!important;
+}
+._header-nav-cntnr {
+    justify-content: center;
+    background-color: #fff!important;
+    height: 6.188rem;
+    margin: 0;
+    z-index: 2;
+}
+._header-cntnr {
+    height: 3rem;
+}
+._title-cntnr {
+    height: auto;
+    width: fit-content;
+    overflow: hidden;
+}
+._ti7l3 {
+    display: block;
+    height: auto;
+    margin: auto 0 auto 1.5rem;
+    font-size: 35px;
+    font-weight: 900;
+    font-family: "Courier New", Courier, monospace;
+    white-space: nowrap;
+}
+._nav-cntnr {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    width: fit-content;
+}
+._nav {
+    height: 2.782rem;
+    overflow: visible;
+}
+._nav, ._nav-m {
+    height: fit-content;
+    padding: 0;
+    box-sizing: border-box;
+}
+._nv_ele_ls {
+    height: 2.782rem;
+    max-width: 20.05rem;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+._nv_ele_sub_ls {
+    height: 0;
+    width: 20.05rem;
+    overflow: visible;
+}
+._nav ._nv_ele, ._nav-m ._nv_ele {
+    display: block;
+    height: fit-content;
+    width: fit-content;
+    margin: 0.603rem 0.4rem;
+}
+._nav ._nv_ele a, ._nav-m ._nv_ele a {
+    background-color: transparent;
+    color: #000!important;
+    display: block;
+    padding: 0.24rem 0 0 0;
+    margin: 0;
+    font-family: Verdana, sans-sefir;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+}
+._nv_anm {
+    background-color: dodgerblue;
+    display: block;
+    height: 0.15rem;
+    width: -webkit-fill-available;
+    transform: scale(0, 1);
+    transition: all 0.3s;
+}
+._nav ._nv_ele a:hover + ._nv_anm {
+    transform: scale(1, 1);
+    transition: all 0.3s;
+}
+._nav ._nv_ele_cntnr ._nv_ele_st a:hover + ._nv_anm {
+    transform: scale(1, 1);
+    transition: all 0.3s;
+}
+._nv_ele_cntnr {
+    
+}
+._nv_sbele_cntnr {
+    height: 0;
+    overflow: visible;
+}
+._nv_sbele_eles {
+    background-color: #fff!important;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+._nv_ele_sub_ele {
+    height: 0;
+    overflow: visible;
+}
+._nm_sel {
+    background-color: #fff!important;
+    height: 0;
+    transition: all 0.3s;
+    overflow: hidden;
+}
+._nm_sel_actv {
+    background-color: #fff!important;
+    height: 133.5px;
+    transition: all 0.3s;
+}
+._nv_computer_subele {
+    background-color: #fff!important;
+    height: 0;
+    transition: all 0.3s;
+    overflow: hidden;
+}
+._nv_computer_subele_actv {
+    background-color: #fff!important;
+    height: 133.5px;
+    transition: all 0.3s;
+}
+._nav-m ._nv_ele a:hover + ._nv_anm {
+    transform: scale(1, 1);
+    transition: all 0.3s;
+}
+nav._defvisbl {
+    height: auto;
+    width: auto;
+    margin: auto 3rem auto 0.4rem;
+}
+._mobile_nav {
+    width: -webkit-fill-available;
+    z-index: 4;
+    height: 0;
+    overflow: hidden;
+}
+._header-search {
+    height: 0;
+    width: 100%;
+}
+._search {
+    background-color: #fff!important;
+    width: 100%;
+    box-shadow: 0rem 0.04rem 0.09rem #f1f1f1!important;
+}
+._srch-active {
+    transform: translateY(0rem);
+    transition: all .3s;
+}
+._srch-inactive {
+    transform: translateY(-6.31rem);
+    transition: all .3s;
+}
+._srch-cntnt {
+    width: 75%;
+    margin: auto;
+    padding: 1.634rem 0 1.634rem 0;
+}
+._srch-input {
+    height: 1.7812rem;
+    width: 100%;
+    margin: 0 0.68rem 0 0.68rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-bottom: 0.14rem solid #000!important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.25rem;
+}
+._srch-input:focus {
+    outline: 0;
+}
+._srch-submit {
+    display: block;
+    height: 2.875rem;
+    width: 2.875rem;
+    margin: 0 0.68rem 0 auto;
+}
+._srch-submit .material-icons {
+    margin: 0.68rem;
+}
+._body-doc_cntnr {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 7rem 0;
+}
+._home-img {
+    height: 400px;
+    width: 100%;
+}
+._body_cntnt_middle {
+    margin: 0;
+}
+._body_page {
+    margin: 0;
+}
+._hm_h1 {
+    font-family: "Courier New", Courier, monospace;
+}
+._bdy-img {
+    width: 70%;
+}
+._body_cntnt_right {
+    width: 300px;
+    float: right;
+    margin-bottom: 7rem;
+    margin-left: auto;
+    
+}
+
+footer {
+    background-color: #001235;
+    width: 100vw;
+    padding: 1.5rem;
+    max-height: 1000px;
+}
+._footer_top {
+    color: #fff!important;
+    font-family: "Courier New", Courier, monospace;
+}
+._footer_bottom {
+    display: flex;
+    flex-direction: row;
+}
+._ftr_bot_ele {
+    margin: 0 2rem;
+    color: #fff!important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+@media screen and (min-width: 685px) {
+._nav ._nv_ele {
+    float: left;
+    }
+._navtog {
+    display: none;
+    }
+._collapse {
+    display: none;
+}
+}
+@media screen and (max-width: 685px) {
+._expand {
+    display: none;
+}
+._collapse {
+    display: block;
+}
+._ti7l3 {
+    margin: auto 0 auto 0.6rem;
+}
+._mobile_nav {
+    display: block;
+    width: fit-content;
+    z-index: 4;
+    height: 0;
+    position: relative;
+    overflow: visible;
+}
+._nav-m {
+    background-color: #ffffff!important;
+}
+._nav_active {
+    height: 9.517em;
+    overflow: hidden;
+    transition: all .3s;
+}
+._nav_inactive {
+    height: 0;
+    overflow: hidden;
+    transition: all .3s;
+}
+._nav-m {
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,.3);
+    }
+nav._defvisbl {
+    margin: auto 1.2rem auto auto;
+}
+._body-doc-container {
+    display: flex;
+    flex-direction: column;
+}
+._bdy-img {
+    width: 98%;
+}
+._body_cntnt_right {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 7rem;
+}
+._footer_bottom {
+    display: flex;
+    flex-direction: column;
+}
+}
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+<header class='_flex_column _full_v_w'>
+<div class='_vcntr _header-nav-cntnr _flex_row'>
+ <p class='_ti7l3 _left'>Math N' IT</p>
+<nav class='_right _nav _expand _flex_column' id='_nav_expand'>
+  <div class='_nv_ele_ls'>
+    <span class='_nv_ele'><a href='#'>Home</a><span class='_nv_anm'></span></span>
+    <span class='_nv_ele' id='_nv_math_el'><a href='#' onclick='anvsubel("_nm_sel")' id='_nv_math'>Math</a><span class='_nv_anm'></span></span>
+    <span class='_nv_ele' id='_nv_computer'><a href='#'>Computer</a><span class='_nv_anm'></span></span>
+    <span class='_nv_ele'><a href='#'>All MNIT</a><span class='_nv_anm'></span></span>
+  </div>
+  <div class='_nv_ele_sub_ls _flex_column'>
+  <div class='_nm_sel _flex_column' id='_nm_sel'>
+    <span class='_nv_ele' id='_nm_ele'><a href='#' id='_nm_ele_a'>Math</a><span class='_nv_anm'></span></span>
+    <span class='_nv_ele' id='_nm_ele'><a href='#' id='_nm_ele_a'>Physics</a><span class='_nv_anm'></span></span>
+    <span class='_nv_ele' id='_nm_ele'><a href='#' id='_nm_ele_a'>Chemistry</a><span class='_nv_anm'></span></span>
+    </div>
+    <div class='_nv_computer_subele _flex_column' id='_nv_computer_subele'>
+    <span class='_nv_ele'><a href='#'>Unix</a><span class='_nv_anm'></span></span>
+    <span class='_nv_ele'><a href='#'>Windows</a><span class='_nv_anm'></span></span>
+    <span class='_nv_ele'><a href='#'>C</a><span class='_nv_anm'></span></span>
+  </div>
+  </div>
+</nav>
+<nav class='_right _defvisbl _flex_row _vcntr'>
+    <span class='_nv_ele _left'><i id='_opnsrch' class="material-icons" style="color: dodgerblue" onclick='opnsrch()'>search</i><i id='_clssrch' style='display:none' class="material-icons">close</i></span>
+
+    <span class='_nv_ele _left _navtog'><i id='_opnnav' style='display: block' class='material-icons' onclick='opnnav()'>menu</i><i id='_clsnav' style='display:none' class="material-icons">close</i></span>
+</nav>
+</div>
+
+<div class='_mobile_nav _right'>
+<nav class='_right _nav-m _nav_inactive _collapse' id='_nav_collapse'>
+    <span class='_nv_ele'><a href='#'>Home</a><span class='_nv_anm'></span></span>
+    <span class='_nv_ele'><a href='#'>Math</a><span class='_nv_anm'></span></span>
+    <span class='_nv_ele'><a href='#'>Computer</a><span class='_nv_anm'></span></span>
+    <span class='_nv_ele'><a href='#'>All MNIT</a><span class='_nv_anm'></span></span>
+</nav>
+</div>
+
+<div class='_header-search _full_v_w'>
+<div class='_search _srch-inactive' id='_search'>
+<div class='_srch-cntnt _flex_row'>
+<input type='text' class='_srch-input' placeholder='What are you looking for?'/>
+<span class='_srch-submit _right;'><i class='material-icons' style='color: dodgerblue'>search</i></span>
+</div>
+</div>
+</div>
+</header>
+
+<img class='_home-img' src='https://1.bp.blogspot.com/-KP-0wN1m2rA/XwyJPSF090I/AAAAAAAAD7M/nV6iDGbmeesLdij_nQNCyWrYcV1Ta2m3QCNcBGAsYHQ/d/code-1084923.png'/>
+
+<div class='_body-doc_cntnr'>
+<div class='_body_cntnt_middle'>
+<div class='_body_page'>
+
+<h1 class='_hm_h1'>Math N' IT, All about Reasearch and  Stupidity</h1>
+<img class='_bdy-img' src='https://images.yourstory.com/cs/7/4c455a90a21411e98b07315772315642/AlbertEinsteinPlaceholderyswFotor-1583923792506.png'>v
+<h3>We all are Stupid with a little knowledge but we want to acquire knowledge</h3>
+<br />
+<br />
+<h1 class='_hm_h1'>Math N' IT, a place to research about Math and Computer related stuffs</h1>
+<img class='_bdy-img' src='https://www.bell-labs.com/usr/dmr/www/kd14.jpg'>
+<h3>We research on computer related stuffs including OS, Kernel, Compiler. Visite our page on <a href='#'>Research on Compiler</a></h3>
+
+<h1 class='_hm_h1'>Reasearch on those stuffs that are not available on the Internet</h1>
+<img class='_bdy-img' src='https://techcrunch.com/wp-content/uploads/2011/10/dennis_ritchie6.jpg?w=730&crop=1'>
+<h3>We research on computer related stuffs including OS, Kernel, Compiler. Visite our page on <a href='#'>Research on Compiler</a></h3>
+
+</div>
+</div>
+<div class='_body_cntnt_right' id='_body_cntnt_right'>
+<p>Here</p>
+<p>Goes</p>
+<p>The</p>
+<p>Adds</p>
+</div>
+</div>
+
+<footer>
+<div class='_footer_top'>
+<h1>This is the footer</h1>
+</div>
+<div class='_footer_bottom'>
+<div class='_ftr_bot_ele'>
+<h4>Researchs</h4>
+<p>Math</p>
+<p>Physics</p>
+<p>Chemistry</p>
+<p>Unix</p>
+<p>C Compiler</p>
+<p>Windows</p>
+</div>
+<div class='_ftr_bot_ele'>
+<p>Programmes</p>
+<p>Ask Question</p>
+<p>Comtribute on Research</p>
+<p>Digitize & Transform Organizations</p>
+<p>Network Evolution Strategy</p>
+<p>Contact</p>
+</div>
+<div class='_ftr_bot_ele'>
+<h4>Programmes</h4>
+<p>Experiments in Art and Technology</p>
+<p>Commemorating the 50th anniversary of Unix</p>
+</div>
+<div class='_ftr_bot_ele'>
+<h4>About</h4>
+<p>President's Vision</p>
+<p>Awards and Recognition</p>
+<p>Our History</p>
+</div>
+</div>
+</footer>
+<script>
+document.getElementById('_opnnav').setAttribute('onclick', 'opnnav()');
+document.getElementById('_clsnav').setAttribute('onclick', 'clsnav()');
+document.getElementById('_opnsrch').setAttribute('onclick', 'opnsrch()');
+document.getElementById('_clssrch').setAttribute('onclick', 'clssrch()');
+
+function anvsubel(sub) {
+  var mstf = document.getElementById(sub);
+  mstf.className = &#39;_mrpg-s7uff-actv&#39;;
+  window.onclick = function(event) {
+  var m_a = document.getElementById(&#39;_mrpg-s7uff-5hw&#39;);
+  var m_b = document.getElementById(&#39;_nvpn-mrpg&#39;);
+  var m_c = document.getElementById(&#39;_nvelhovef-mrpg&#39;);
+  if (event.target.id !== m_a.id &amp;&amp; event.target.id !== m_b.id &amp;&amp; event.target.id !== m_c.id) {
+				mstf.className = &#39;_mrpg-s7uff&#39;;
+			}
+		}
+}
+function opnnav() {
+  var nav = document.getElementById('_nav_collapse');
+  nav.className = '_right _nav-m _nav_active';
+  document.getElementById('_opnnav').style.display = 'none';
+  document.getElementById('_clsnav').style.display = 'block';
+ 
+}
+function clsnav() {
+  var nav = document.getElementById('_nav_collapse');
+  nav.className = '_right _nav-m _nav_inactive _collapse';
+  document.getElementById('_opnnav').style.display = 'block';
+  document.getElementById('_clsnav').style.display = 'none';
+ 
+}
+function opnsrch() {
+  var srch = document.getElementById('_search');
+  srch.className = '_search _srch-active';
+  document.getElementById('_opnsrch').style.display = 'none';
+  document.getElementById('_clssrch').style.display = 'block';
+}
+function clssrch() {
+  var srch = document.getElementById('_search');
+  srch.className = '_search _srch-inactive';
+  document.getElementById('_opnsrch').style.display = 'block';
+  document.getElementById('_clssrch').style.display = 'none';
+}
+</script>
+</body>
+</html>

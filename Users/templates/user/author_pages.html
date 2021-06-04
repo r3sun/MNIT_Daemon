@@ -1,0 +1,97 @@
+{% load static %}
+<html>
+<head>
+<link rel='stylesheet' href='{% static 'user/author_pages_style.css' %}'/>
+<link rel='stylesheet' href='{% static 'user/home_style.css' %}'/>
+<script src='{% static 'user/home_script.js' %}'></script>
+</head>
+<body>
+<header>
+<div class='header _flex_row'>
+<p class='_title _left'>MNIT</p>
+<div class='user_menu_cntnr _right'>
+<img src='{% static 'evan.jpg' %}' class='_profile_image' onclick='shw_u_menu()'/>
+<div class='user_menu' id='user_menu'>
+<p onclick='hid_u_menu()'>x</p>
+<p>Logout</p>
+</div>
+</div>
+</div>
+<nav class='_flex_row'>
+<a href='{{ main_url }}{% url 'get_CPageF' %}' class='_left'>Creat New Page</a>
+<div class='_right _flex_row'>
+<a href='{{ main_url }}{% url 'home' %}'>Home</a>
+<a href='{{ main_url }}{% url 'pages' %}'>Pages</a>
+<a href='{{ main_url }}{% url 'settings' %}'>Settings</a>
+</div>
+</nav>
+</header>
+<div class='notification_container' id='notification_container'>
+<div class='notification'>
+<p class='notification_text'>{{ notification }}</p>
+</div>
+</div>
+<div class='body_cntnr' id='body_cntnr'>
+<p id="pg">
+</p>
+</div>
+
+{% if notification %}
+<script type='text/javascript'>
+
+setTimeout(show_ntf, 1);
+
+</script>
+{% endif %}
+<script>
+get_pages(0);
+var offset = 0;
+window.onload = function() {get_pages(offset); offset += 8;};
+window.onscroll = function() {setTimeout(ld_pages, 1000)};
+function ld_pages()
+{
+
+	if(atBottom()) {
+		get_pages(offset);
+		offset += 8;
+	}
+}
+function atBottom()
+{
+	if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+function get_pages(ofst)
+{
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if(this.readyState == 4 && this.status == 200) {
+			fill_pages(this.responseText);
+		}
+	};
+	xhttp.open("GET", "http://127.0.0.1:8000/u/get_pages/" + ofst, true);
+	xhttp.send();
+}
+
+function fill_pages(data)
+{
+	var d = data.replace(/\\/g, '').replace("\"[", "[").replace("]\"", "]");
+	
+	var p_d = JSON.parse(d);
+	if(p_d) {
+		var csrf = '{% csrf_token %}';
+		var i;
+		var doc = document.getElementById("body_cntnr");
+		for (i = 0; i < p_d.length; i++) {
+			var p_data = p_d[i];
+			var htmldt = "<div class='_pgls_el _flex_row'> <div class='_page-nm_cntnr _left _flex_column'> <a class='_page-nm' href='/" + p_data.fields.url + "'>" + p_data.fields.title + "</a> <p class='_right _page_athr_time _flex_row _vcntr'>By&nbsp;:&nbsp;" + p_data.fields.author + "&nbsp; at &nbsp;" + p_data.fields.pub_time + "</p> </div>  <div class='_right _flex_column _page_inf_cntnr'> <p class='_left _pg_vew _flex_row _vcntr'>Total views&nbsp;:&nbsp; <span class='_right'>" + p_data.fields.views + "</span></p> <p class='_left _pg_url _flex_row _vcntr'>Url&nbsp;:&nbsp;&nbsp;&nbsp; <span class='_right'>" + p_data.fields.url + "</span></p> <form action='{% url 'delete_page' %}' method='post'> " + csrf + " <input type='hidden' name='_url' value='" + p_data.fields.url + "'/> <input class='_pg_delete _left' type='submit' value='Delete'/> </form> </div> </div>";
+			doc.innerHTML = doc.innerHTML + htmldt;
+		}
+	}
+}
+</script>
+</body>
+</html>

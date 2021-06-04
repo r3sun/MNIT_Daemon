@@ -1,0 +1,42 @@
+{% load static %}
+<html>
+<head>
+<title>Login | MNIT</title>
+<link rel='stylesheet' href='{% static 'user/login_style.css' %}'/>
+<script src='{% static 'user/home_script.js' %}'></script>
+</head>
+<body>
+<div class='body_container'>
+<div class='notification_container' id='notification_container'>
+<div class='notification'>
+<p class='notification_text'>{{ notification }}</p>
+</div>
+</div>
+<div class='login_form'>
+<div class='heading'>
+<img src='{% static 'math_n_it.png' %}' />
+<p class='sign_in_text'>Sign in to MNIT</p>
+</div>
+<form action='{% url 'login' %}' id='_frm_login' class='_frm_login' method='POST'>
+{% csrf_token %}
+  <div class='_frm_element'>
+  <input type='text' name='_user' class='_frm_name' required placeholder='User Name' />
+  </div>
+  <div class='_frm_element'>
+  <input type='password' name='_pswrd' class='_frm_password' required placeholder='Password' />
+  </div>
+  <div class='_frm_element'>
+  <input type='submit' value='Login' class='_frm_submit' />
+  </div>
+</form>
+</div>
+</div>
+{% if notification %}
+<script type='text/javascript'>
+
+setTimeout(show_ntf, 1);
+
+</script>
+{% endif %}
+</body>
+</html>

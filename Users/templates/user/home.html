@@ -1,0 +1,41 @@
+{% load static %}
+<html>
+<head>
+<link rel='stylesheet' href='{% static 'user/home_style.css' %}'/>
+<script src='{% static 'user/home_script.js' %}'></script>
+</head>
+<body>
+<header>
+<div class='header _flex_row'>
+<p class='_title _left'>MNIT</p>
+<div class='user_menu_cntnr _right'>
+<img src='{% static 'evan.jpg' %}' class='_profile_image' onclick='shw_u_menu()'/>
+<div class='user_menu' id='user_menu'>
+<p onclick='hid_u_menu()'>x</p>
+<p>Logout</p>
+</div>
+</div>
+</div>
+<nav class='_flex_row'>
+<a href='{{ main_url }}{% url 'get_CPageF' %}' class='_left'>Creat New Page</a>
+<div class='_right _flex_row'>
+<a href='{{ main_url }}{% url 'home' %}'>Home</a>
+<a href='{{ main_url }}{% url 'pages' %}'>Pages</a>
+<a href='{{ main_url }}{% url 'settings' %}'>Settings</a>
+</div>
+</nav>
+</header>
+<div class='notification_container' id='notification_container'>
+<div class='notification'>
+<p class='notification_text'>{{ notification }}</p>
+</div>
+</div>
+{% if notification %}
+<script type='text/javascript'>
+
+setTimeout(show_ntf, 1);
+
+</script>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,60 @@
+._pgls_el {
+  background-color: #ffffff;
+  width: -webkit-fill-available;
+  padding: 0.5rem;
+  margin-top: 0.9rem;
+  margin-left: 0;
+  margin-bottom: 0.9rem;
+  margin-right: 0;
+  box-shadow: 0.4rem 0.4rem 0.9rem #ccc!important;
+}
+._page-nm {
+  color: #000;
+  height: fit-content;
+  width: fit-content;
+  margin: 1.2rem 0;
+  text-decoration: none;
+  font-size: var(--pg_nm_font_size);
+  font-family: var(--pg_nm_font_family);
+}
+._page_athr_time {
+  font-size: var(--_font_size);
+  font-family: var(--_font_family);
+}
+._page_inf_cntnr {
+    width: 20rem;
+}
+._page_inf {
+    height: fit-content;
+    width: -webkit-fill-available;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+._pg_vew {
+  margin-left: 0;
+  margin-bottom: auto;
+  font-size: var(--_font_size);
+  font-family: var(--_font_family);
+}
+._pg_url {
+  margin-left: 0;
+  margin-top: auto;
+  font-size: var(--_font_size);
+  font-family: var(--_font_family);
+}
+._pg_url span {
+  font-family: var(--pg_url_font_family);
+}
+._pg_delete {
+  background-color: transparent;
+  font-size: var(--_font_size);
+  font-family: var(--_font_family);
+  border: 0;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+._pg_delete:active {
+  border: 0;
+  outline: none;
+}

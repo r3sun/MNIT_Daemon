@@ -1,0 +1,67 @@
+{% load static %}
+<html>
+<head>
+<link rel='stylesheet' href='{% static 'user/author_pages_style.css' %}'/>
+<link rel='stylesheet' href='{% static 'user/home_style.css' %}'/>
+<script src='{% static 'user/home_script.js' %}'></script>
+</head>
+<body>
+<header>
+<div class='header _flex_row'>
+<p class='_title _left'>MNIT</p>
+<div class='user_menu_cntnr _right'>
+<img src='{% static 'evan.jpg' %}' class='_profile_image' onclick='shw_u_menu()'/>
+<div class='user_menu' id='user_menu'>
+<p onclick='hid_u_menu()'>x</p>
+<p>Logout</p>
+</div>
+</div>
+</div>
+<nav class='_flex_row'>
+<a href='{{ main_url }}{% url 'get_CPageF' %}' class='_left'>Creat New Page</a>
+<div class='_right _flex_row'>
+<a href='{{ main_url }}{% url 'home' %}'>Home</a>
+<a href='{{ main_url }}{% url 'pages' %}'>Pages</a>
+<a href='{{ main_url }}{% url 'settings' %}'>Settings</a>
+</div>
+</nav>
+</header>
+<div class='notification_container' id='notification_container'>
+<div class='notification'>
+<p class='notification_text'>{{ notification }}</p>
+</div>
+</div>
+<div class='body_cntnr'>
+<div id='pg'>
+</div>
+{% if pages %}
+{% for p in pages %}
+<div class='_pgls_el _flex_row'>
+  <div class='_page-nm_cntnr _left _flex_column'>
+    <a class='_page-nm' href='{{ p.url }}'>{{ p.title }}</a>
+    <p class='_right _page_athr_time _flex_row _vcntr'>By&nbsp;:&nbsp; {{ p.author }}&nbsp; at &nbsp; {{ p.pub_time }}</p>
+  </div>
+
+  <div class='_right _flex_column _page_inf_cntnr'>
+    <p class='_left _pg_vew _flex_row _vcntr'>Total views&nbsp;:&nbsp; <span class='_right'>{{ p.views }}</span></p>
+    <p class='_left _pg_url _flex_row _vcntr'>Url&nbsp;:&nbsp;&nbsp;&nbsp; <span class='_right'>{{ p.url }}</span></p>
+    <form action={% url 'delete_page' %} method='post'>
+      {% csrf_token %}
+      <input type='hidden' name='_url' value='{{ p.url }}'/>
+      <input class='_pg_delete _left' type='submit' value='Delete'/>
+    </form>
+</div>
+</div>
+{%endfor %}
+{% endif %}
+</div>
+{% if notification %}
+<script type='text/javascript'>
+
+setTimeout(show_ntf, 1);
+
+</script>
+{% endif %}
+<script src='{% static 'user/get_pages.js' %}'></script>
+</body>
+</html>

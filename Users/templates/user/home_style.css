@@ -1,0 +1,143 @@
+:root {
+  font-size: 16px;
+  --_font_family: Vardana, sans-serif;
+  --_font_size: 1rem;
+  --bg_color: rgb(80 150 255);
+  --nav_bgcolor: #f1f1f1;
+  --pg_nm_font_family: Vardana, sans-serif;
+  --pg_nm_font_size: 1.2rem;
+  --pg_url_font_family: "Couriar New";
+  --ntf_bg_color: rgb(80 150 255);
+  --ntf_txt_color: #ffffff;
+  --ntf_font_size: 2rem;
+}
+
+._left {
+  margin-left: 0;
+  margin-right: auto;
+}
+._right {
+  margin-left: auto;
+  margin-right: 0;
+}
+._flex_row {
+    display: flex;
+    flex-direction: row;
+}
+._flex_column {
+    display: flex;
+    flex-direction: column;
+}
+._flex_row_rev {
+    display: flex;
+    flex-direction: row-reverse;
+}
+._no-wrap {
+    display: flex;
+    flex-wrap: no-wrap;
+}
+._expand {
+    display: flex;
+}
+._collapse {
+    display: none;
+}
+body {
+  margin: 0!important;
+}
+header {
+  background-color: var(--bg_color);
+  height: 5.3625rem;
+  overflow: visible;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+.title_cntnr {
+  height: 3.01rem;
+  width: fit-content;
+}
+._title {
+  margin: 0 auto 0 2rem;
+  padding: 0.369rem;
+  height: fit-content;
+  width: fit-content;
+  text-align: center;
+  font-family: var(--_font_family);
+  font-size: 2rem;
+  text-transform: uppercase;
+  color:#fff;
+}
+.user_menu_cntnr {
+  height: 3rem;
+  margin: 0 2rem 0 auto;
+  overflow: visible;
+}
+.user_menu {
+  background-color: #ffffff;
+  height: 0;
+  overflow: hidden;
+  width: fit-content;
+  position: relative;
+  z-index: 2;
+  transition: height 0.3s;
+}
+.user_menu.active {
+  height: 10rem;
+  transition: height 0.3s;
+}
+._profile_image {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+nav {
+  background-color: var(--nav_bgcolor);
+  margin: auto 0 0 0;
+}
+nav a {
+  display: block;
+  background-color: #ff6969;
+  padding: 0.5rem 1rem;
+  color: #ffffff;
+  margin: 0;
+  font: 1rem Arial, Helvetica;
+  border: 0.01rem solid transparent;
+  text-decoration: none;
+}
+nav a:active {
+  border-top: 0.01rem solid transparent;
+  border-right: 0.01rem solid #ffffff;
+  border-bottom: 0.01rem solid transparent;
+  border-left: 0.01rem solid #ffffff;
+  text-decoration: none;
+}
+.notification_container {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s 0.6s;
+}
+.notification_container.active {
+  height: 10rem;
+  overflow: hidden;
+  transition: height 0.3s 0.6s;
+}
+.notification {
+  background-color: var(--ntf_bg_color);
+  margin: 0 auto 2rem auto;
+  padding: 2rem;
+  width: -webkit-fill-available;
+  height: 4rem;
+  box-shadow: 0 0.4rem 1rem #ccc!important;
+}
+.notification_text {
+  background-color: transparent;
+  color: var(--ntf_txt_color);
+  font-family: var(--font_family);
+  font-size: var(--ntf_font_size);
+  margin: auto;
+  width: fit-content;
+}
+.cntnt_body {
+  background-color: #ffffff;
+}

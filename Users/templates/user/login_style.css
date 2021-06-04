@@ -1,0 +1,95 @@
+:root {
+  --color: #ff6969;
+  --font_family: Arial, Helvetica, sans-serif;
+  --font_size: 16px;
+  --ntf_bg_color: rgb(80 150 255);
+  --ntf_txt_color: #ffffff;
+  --ntf_font_size: 2rem;
+}
+body {
+  margin: 0!important;
+}
+.body_container {
+  height: 100%;
+  width: 100%;
+}
+.notification_container {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s 0.6s;
+}
+.notification_container.active {
+  height: 10rem;
+  overflow: hidden;
+  transition: height 0.3s 0.6s;
+}
+.notification {
+  background-color: var(--ntf_bg_color);
+  margin: 0 auto 2rem auto;
+  padding: 2rem;
+  width: -webkit-fill-available;
+  height: 4rem;
+  box-shadow: 0 0.4rem 1rem #ccc!important;
+}
+.notification_text {
+  background-color: transparent;
+  color: var(--ntf_txt_color);
+  font-family: var(--font_family);
+  font-size: var(--ntf_font_size);
+  margin: auto;
+  width: fit-content;
+}
+.heading {
+  font-family: var(--font_family);
+  align-items: center;
+}
+.sign_in_text {
+  font-family: var(--font_family);
+  text-align: center;
+}
+.login_form {
+  background-color: #ffffff;
+  margin: auto;
+  padding: 3rem;
+  width: fit-content;
+  box-shadow: 0.4rem 0.4rem 0.9rem #ccc!important;
+}
+._frm_element {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+._frm_name {
+  width: 15rem;
+  height: 2rem;
+  border: 0.01rem solid #ccc;
+  outline: none;
+  border-radius: 0.3rem;
+}
+._frm_name:focus {
+  border: 0.01rem solid var(--color);
+  outline: none;
+}
+._frm_password {
+  width: 15rem;
+  height: 2rem;
+  border: 0.01rem solid #ccc;
+  outline: none;
+  border-radius: 0.3rem;
+}
+._frm_password:focus {
+  border: 0.01rem solid var(--color);
+  outline: none;
+}
+._frm_submit {
+  background-color: var(--color);
+  color: #ffffff;
+  width: 15rem;
+  height: 2rem;
+  border: 0;
+  outline: none;
+  border-radius: 0.3rem;
+}
+._frm_submit:focus {
+  border: 0;
+  outline: none;
+}
