@@ -506,12 +506,8 @@ header {
           <input id='_file_upld_title' type='hidden' name='_title'/>
           <input id='_file_upld_subj' type='hidden' name='_subj'/>
           <input id='_file_upld_type' type='hidden' name='_type'/>
-          <div class='_flex_row'>
-            <p class='_file_upld_file_p' id='_file_upld_file_p'>Choose Files</p>
-            <p id='_slctd_files'></p>
-          </div>
-          <input type='file' name='_files' multiple='' required='' id='_file_upld_file' onchange='slctd_file_updt()'>
-          <p class='_file_upld_submit' onclick='_upld_file_click()'>Upload File</p>
+          <input type='file' name='_files' multiple='' required='' id='_file_upld_file' onchange='_upld_file_click()'>
+          <p class='_file_upld_submit' onclick='_slct_file_mnu()'>Upload File</p>
         </form>
         <div class='_upldd_file_cntnr' id='_upldd_file_cntnr'>
     
@@ -535,7 +531,7 @@ header {
 </div>
 
 <script>
-document.getElementById('_file_upld_file_p').addEventListener('click', function() {
+function() _slct_file_mnu() {
   document.getElementById('_file_upld_file').click();
 });
 function gen_path() {
@@ -600,14 +596,6 @@ function _pblsh() {
   }
 }
 
-function slctd_file_updt() {
-  var l = document.getElementById('_file_upld_file').files.length;
-  if (l <= 1) {
-  document.getElementById('_slctd_files').innerText = l + " file selected";
-  } else {
-    document.getElementById('_slctd_files').innerText = l + " files selected";
-  }
-}
 function _upld_file_click() {
   var ttl, subj, typ, cntnt, ttlmsg, subjmsg, typmsg, cntntmsg;
   ttl = document.getElementById('_frm_title').value;
