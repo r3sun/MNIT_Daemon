@@ -3,7 +3,7 @@ sys.path.append("..")
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Pages
-from .cpage import creat_page_files, creat_upload_files
+from .cpage import *
 from Users.authentication import authenticate
 from django.http import JsonResponse
 
@@ -61,7 +61,8 @@ def upld_new_page(request):
                 return render(request, 'msg.html', {'msg' : 'page with the same name already exists'})
             except:
                 c = creat_page_files(_subj, _type, _utitle, _cntnt)
-                if c:
+                f = mv_file_to_orgn(_subj, _type, _utitle)
+                if c and f:
                     p = Pages(path = _path, url = _url, title = _title, subj = _subj, typ = _type, pub_time = timezone.now(), mk_array = _mk_array, author = _author, aprnc = '1', state = '1')
                     p.save()
                     return render(request, _path, )
@@ -89,7 +90,8 @@ def save_new_page(request):
                 return render(request, 'msg.html', {'msg' : 'page with the same name already exists'})
             except:
                 c = creat_page_files(_subj, _type, _utitle, _cntnt)
-                if c:
+                f = mv_file_to_orgn(_subj, _type, _utitle)
+                if c and f:
                     p = Pages(path = _path, url = _url, title = _title, subj = _subj, typ = _type, pub_time = timezone.now(), mk_array = _mk_array, author = _author, aprnc = '0', state='1')
                     p.save()
                     return render(request, _path, )
