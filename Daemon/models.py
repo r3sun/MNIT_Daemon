@@ -3,8 +3,10 @@ from django.db import models
 # Create your models here.
 
 class Pages(models.Model):
-    path = models.TextField()
     url = models.TextField()
+
+class PageInf(models.Model):
+    path = models.TextField()
     title = models.TextField()
     subj = models.CharField(max_length = 20)
     typ = models.CharField(max_length = 20)

@@ -11,24 +11,25 @@ def home(request):
     return render(request, 'index.html', )
 
 def gPageArg3(request, _subj, _type, _title):
+    _url = _subj + "/" + _type + "/" + _title
     _path = _subj + "/" + _type + "/" + _title + "/index.html"
-    p = Pages.objects.get(path__icontains = _path)
-    if p.state == '1' and p.aprnc == '1':
+    try:
+        p = Pages.objects.get(url = _url)
         return render(request, _path,)
-    else:
+    except:
         return render(request, 'index.html', {'pcontent' : '-_-'})
 
-def gPageArg1(request, _title):
-    _path = _title + "/index.html"
-    p = Pages.objects.get(path__icontains = _path)
-    if p.aprnc == '1':
-        return render(request, _path,)
-    else:
-        return render(request, 'index.html', {'pcontent' : '-_-'})
+#def gPageArg1(request, _title):
+    #_path = _title + "/index.html"
+    #p = Pages.objects.get(path__icontains = _path)
+    #if p.aprnc == '1':
+        #return render(request, _path,)
+    #else:
+        #return render(request, 'index.html', {'pcontent' : '-_-'})
 
 
 def all_pages(request):
-    p = Pages.objects.filter(aprnc = '1')
+    p = Pages.objects.all()
     content = { 'pages' : p }
     return render(request, 'all_pages.html', content)
 
@@ -43,7 +44,29 @@ def cPageF(request):
         return render(request, 'create_page_form.html',)
     else:
         return render(request, 'login.html', {'notification' : 'non-auhenticated user'})
+def mPageF(request):
+    if authenticate(request):
+        if request.method == 'POST':
+            u = request.POST['_url']
+            try:
+                p = Pages.objects.get(url = u)
+                f = open(Page_Storage + p.path, 'r')
+                c = f.read()
+                context = {'title' : p.title, 'subj' : p.subj, 'typ' : p.typ, 'content' : c, 'mk_array' : p.mk_array}
+                return render(request, 'modify_page_form.html', context)
+            except:
+                return render(request, 'msg.html', {'msg' : 'page with this url doesn\'t exists'})
+        else:
+            return render(request, 'msg.html', {'msg' : 'method isn\'t post'})
+    else:
+        return render(request, 'user/login.html', {'notification' : 'non-auhenticated user'})
 
+def mpg(request):
+    if authenticate(request):
+        return render(request, 'ht.html', )
+    else:
+        return render(request, 'user/login.html', {'notification' : 'non-auhenticated user'})
+    
 def upld_new_page(request):
     if authenticate(request):
         if request.method == 'POST':
@@ -116,7 +139,43 @@ def delete_page(request):
     else:
         return render(request, 'login.html', {'notification' : 'non-auhenticated user'})
 
-   
+def upld_new_page(request):
+    if authenticate(request):
+        if request.method == 'POST':
+            _ititle = request.POST['_ititle']
+            _iutitle = _ititle.replace(" ", "_")
+            _title = request.POST['_title']
+            _utitle = _title.replace(" ", "_")
+            _isubj = request.POST['_isubj']
+            _subj = request.POST['_subj']
+            _itype = request.POST['_itype']
+            _type = request.POST['_type']
+            _cntnt = request.POST['_cntnt']
+            _imk_array = request.POST['_imk_array']
+            _mk_array = request.POST['_mk_array']
+            _iauthor = request.session['_iuser']
+            _author = request.session['_user']
+            _iurl = _isubj + "/" + _itype + "/" + _iutitle
+            _ipath = _iurl + "/index.html"
+            _url = _subj + "/" + _type + "/" + _utitle
+            _path = _url + "/index.html"
+            try:
+                p = Pages.objects.get(url = _url)
+                return render(request, 'msg.html', {'msg' : 'page with the same name already exists'})
+            except:
+                c = creat_page_files(_subj, _type, _utitle, _cntnt)
+                f = mv_file_to_orgn(_subj, _type, _utitle)
+                if c and f:
+                    p = Pages(path = _path, url = _url, title = _title, subj = _subj, typ = _type, pub_time = timezone.now(), mk_array = _mk_array, author = _author, aprnc = '1', state = '1')
+                    p.save()
+                    return render(request, _path, )
+                else:
+                    return render(request, 'msg.html', {'msg' : 'couldn\'t creat page'})
+        else:
+            return render(request, 'msg.html', {'msg' : 'method isn\'t post'})
+    else:
+        return render(request, 'login.html', {'notification' : 'non-auhenticated user'})
+
 def upload_files(request):
     if authenticate(request):
         if request.method == 'POST':

@@ -1,7 +1,7 @@
 <!Doctype HTML>
 <html>
 <head>
-<title>Create Page</title>
+<title>Modify Page</title>
 <style>
 :root {
   font-size: 16px;
@@ -464,11 +464,10 @@ select option {
 <body>
 <header>
   <div class='_flex_row'>
-    <p class='_title'>Create New Page</p>
+    <p class='_title'>Modify Page</p>
 
     <div class='_frm_submit_cntnr'>
-      <p class='_publish_btn' onclick='_pblsh()'>Publish</p>
-      <p class='_save_btn'onclick='_save()'>Save</p>
+      <p class='_publish_btn' onclick='_updt()'>Update</p>
     </div>
   </div>
 </header>
@@ -477,12 +476,12 @@ select option {
   <div class='_flex_column'>
     <div class='_flex_row _form_container'>
       <div class='_frm_cntnr'>
-        <form action='{% url 'upld_new_page' %}' id='_crt_pg_frm' method='POST'>
+        <form action='{% url 'upld_new_page' %}' id='_mdfy_pg_frm' method='POST'>
           {% csrf_token %}
           <div class='_frm_elmnts _flex_column'>
             <div class='_flex_column _frm_title_cntnr'>
               <p id='_frm_ttl_msg' class='_frm_ttl_msg'>This field is required</p>
-              <input type='text' name='_title' class='_frm_title' id='_frm_title' placeholder='Title of the page is...' required />
+              <input type='text' name='_title' class='_frm_title' id='_frm_title' placeholder='Title of the page is...' required value='{{ title }}'/>
             </div>
             <div class='_flex_row _frm_selc_cntnr'>
               <div class='_frm_selct_sprtr _left'>
@@ -535,12 +534,12 @@ select option {
 
   <div class='_frm_mk_array_cntnr _flex_column'>
     <lable for='_frm_mk_array' class='_frm_mk_array_lbl'>Meta Keywords:</lable>
-    <textarea form='_crt_pg_frm' name='_mk_array' placeholder='Meta keywords...' class='_frm_mk_array' id='_frm_mk_array'></textarea>
+    <textarea form='_mdfy_pg_frm' name='_mk_array' placeholder='Meta keywords...' class='_frm_mk_array' id='_frm_mk_array'>{{ mk_array }}</textarea>
   </div>
 
   <div class='_flex_column _frm_txara_cntnr'>
     <p id='_frm_cntnt_msg'>This field is required</p>
-    <textarea name='_cntnt' class='_frm_content' id='_frm_content' form='_crt_pg_frm' placeholder='Content of the page is...'></textarea>
+    <textarea name='_cntnt' class='_frm_content' id='_frm_content' form='_mdfy_pg_frm' placeholder='Content of the page is...'>{{ content }}</textarea>
     <p class='_prvw_btn' onclick='preview()'>preview</p>
   </div>
 
@@ -589,7 +588,7 @@ function typ_updt() {
   document.getElementById('_frm_typ_msg').style.display = "none";
 }
 
-function _pblsh() {
+function _updt() {
   var ttl, subj, typ, cntnt, ttlmsg, subjmsg, typmsg, cntntmsg;
   ttl = document.getElementById('_frm_title').value;
   subj = document.getElementById('_frm_subj').value;
@@ -608,7 +607,7 @@ function _pblsh() {
   } else if (cntnt.length === 0) {
     cntntmsg.style.display = "block";
   } else {
-    document.getElementById('_crt_pg_frm').submit();
+    document.getElementById('_mdfy_pg_frm').submit();
   }
 }
 
@@ -674,27 +673,19 @@ function cpy_file_link(el) {
   inpt.setSelectionRange(0, 99999);
   document.execCommand("copy");
 }
-function _save() {
-  var ttl, subj, typ, cntnt, ttlmsg, subjmsg, typmsg, cntntmsg;
-  ttl = document.getElementById('_frm_title').value;
-  subj = document.getElementById('_frm_subj').value;
-  typ = document.getElementById('_frm_type').value;
-  cntnt = document.getElementById('_frm_content').value;
-  ttlmsg = document.getElementById('_frm_ttl_msg');
-  subjmsg = document.getElementById('_frm_subj_msg');
-  typmsg = document.getElementById('_frm_typ_msg');
-  cntntmsg = document.getElementById('_frm_cntnt_msg');
-  if (ttl.length === 0) {
-    ttlmsg.style.display = "block";
-  } else if (subj.length === 0) {
-    subjmsg.style.display = "block";
-  } else if (typ.length === 0) {
-    typmsg.style.display = "block";
-  } else if (cntnt.length === 0) {
-    cntntmsg.style.display = "block";
-  } else {
-    document.getElementById('_crt_pg_frm').action = '{% url 'save_new_page' %}';
-    document.getElementById('_crt_pg_frm').submit();
+
+setSelct('_frm_subj', '{{ subj }}');
+setSelct('_frm_type', '{{ typ }}');
+function setSelct(elid, val) {
+  var el = document.getElementById(elid);
+  var opts = el.options;
+  var i;
+  for (i = 0; i < opts.length; i++) {
+    if(opts[i].value == val) {
+      el.selectedIndex = i;
+    } else {
+      ;
+    }
   }
 }
 
