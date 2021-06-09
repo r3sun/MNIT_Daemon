@@ -557,11 +557,13 @@ function gen_path() {
   }
   var _subj = document.getElementById('_frm_subj').value;
   var _type = document.getElementById('_frm_type').value;
+  subj_updt();
+  typ_updt();
   document.getElementById('_page_url').innerHTML = _subj + '/' + _type + '/' +_title;
 }
 
 document.getElementById('_frm_title').addEventListener("change", function() {
-  gen_path();
+  gen_path()
   var ttl;
   ttl = document.getElementById('_frm_title').value;
   document.getElementById('_file_upld_title').value = ttl;
@@ -574,7 +576,6 @@ document.getElementById('_frm_content').addEventListener("keypress", function() 
 });
 
 function subj_updt() {
-  gen_path();
   var subj;
   subj = document.getElementById('_frm_subj').value;
   document.getElementById('_file_upld_subj').value = subj;
@@ -582,7 +583,6 @@ function subj_updt() {
 }
 
 function typ_updt() {
-  gen_path();
   var typ;
   typ = document.getElementById('_frm_type').value;
   document.getElementById('_file_upld_type').value = typ;

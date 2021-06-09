@@ -19,23 +19,24 @@ def gPageArg3(request, _subj, _type, _title):
     except:
         return render(request, 'index.html', {'pcontent' : '-_-'})
 
-#def gPageArg1(request, _title):
-    #_path = _title + "/index.html"
-    #p = Pages.objects.get(path__icontains = _path)
-    #if p.aprnc == '1':
-        #return render(request, _path,)
-    #else:
-        #return render(request, 'index.html', {'pcontent' : '-_-'})
-
+'''
+def gPageArg1(request, _title):
+    _path = _title + "/index.html"
+    p = Pages.objects.get(path__icontains = _path)
+    if p.aprnc == '1':
+        return render(request, _path,)
+    else:
+        return render(request, 'index.html', {'pcontent' : '-_-'})
+'''
 
 def all_pages(request):
-    p = Pages.objects.all()
+    p = PageInf.objects.all()
     content = { 'pages' : p }
     return render(request, 'all_pages.html', content)
 
 
 def subj_pages(request, subj):
-    p = Pages.objects.filter(subj = subj).filter(state = '1').filter(aprnc = '1')
+    p = PagesInf.objects.filter(subj = subj)
     content = {'pages' : p}
     return render(request, 'subj-pages.html', content)
 
@@ -84,10 +85,12 @@ def upld_new_page(request):
                 return render(request, 'msg.html', {'msg' : 'page with the same name already exists'})
             except:
                 c = creat_page_files(_subj, _type, _utitle, _cntnt)
-                f = mv_file_to_orgn(_subj, _type, _utitle)
+                f = mv_file_to_orgn(_url)
                 if c and f:
-                    p = Pages(path = _path, url = _url, title = _title, subj = _subj, typ = _type, pub_time = timezone.now(), mk_array = _mk_array, author = _author, aprnc = '1', state = '1')
+                    p = Pages(url = _url)
                     p.save()
+                    pinf = PageInf(path = _path, url = _url, title = _title, subj = _subj, typ = _type, pub_time = timezone.now(), mk_array = _mk_array, author = _author)
+                    pinf.save()
                     return render(request, _path, )
                 else:
                     return render(request, 'msg.html', {'msg' : 'couldn\'t creat page'})
@@ -113,10 +116,12 @@ def save_new_page(request):
                 return render(request, 'msg.html', {'msg' : 'page with the same name already exists'})
             except:
                 c = creat_page_files(_subj, _type, _utitle, _cntnt)
-                f = mv_file_to_orgn(_subj, _type, _utitle)
+                f = mv_file_to_orgn(_url)
                 if c and f:
-                    p = Pages(path = _path, url = _url, title = _title, subj = _subj, typ = _type, pub_time = timezone.now(), mk_array = _mk_array, author = _author, aprnc = '0', state='1')
+                    p = Pages(url = _url)
                     p.save()
+                    pinf = PagesInf(path = _path, url = _url, title = _title, subj = _subj, typ = _type, pub_time = timezone.now(), mk_array = _mk_array, author = _author)
+                    pinf.save()
                     return render(request, _path, )
                 else:
                     return render(request, 'msg.html', {'msg' : 'couldn\'t creat page'})
@@ -131,15 +136,25 @@ def delete_page(request):
     if authenticate(request):
         if request.method == 'POST':
             p = Pages.objects.get(url = request.POST['_url'])
-            p.state = '0'
-            p.save()
-            return render(request, 'msg.html', {'msg' : 'deleted successfuly'})
+            pinf = PagesInf.objects.get(url = request.POST['_url'])
+            dpf = del_page_file(request.POST['_url'])
+            if dpf:
+                dp = Deltd_Pages(path = pinf.path, url = pinf.url, title = pinf.title, subj = pinf.subj, typ = pinf.type, pub_time = pinf.pub_time, mk_array = pinf.mk_array, author = pinf.author)
+                dp.save()
+                pinf.delete()
+                pinf.save()
+                p.delete()
+                p.save()
+                return render(request, 'msg.html', {'msg' : 'deleted successfuly'})
+            else:
+                return render(request, 'msg.html', {'msg' : 'couldn\'t delete page'})
         else:
             return render(request, 'msg.html', {'msg' : 'method isn\'t post'})
     else:
         return render(request, 'login.html', {'notification' : 'non-auhenticated user'})
 
-def upld_new_page(request):
+'''
+def mdfy_new_page(request):
     if authenticate(request):
         if request.method == 'POST':
             _ititle = request.POST['_ititle']
@@ -175,6 +190,8 @@ def upld_new_page(request):
             return render(request, 'msg.html', {'msg' : 'method isn\'t post'})
     else:
         return render(request, 'login.html', {'notification' : 'non-auhenticated user'})
+'''
+
 
 def upload_files(request):
     if authenticate(request):
@@ -202,12 +219,13 @@ def upload_files(request):
     else:
             return render(request, 'login.html', {'notification' : 'non-auhenticated user'})
 
-                
-#def viewed(request):
-#    v_url = request.Post['_url']
-#    v_region = request.Post['_region']
-#    v_time = request.Post['_time']
-#    p = Pagedb.objects.filter(url = v_url)
-#    p._view += 1
-#    p.pg_views_set.create(region = v_region, _time = v_time)
-    
+
+'''                
+def viewed(request):
+    v_url = request.Post['_url']
+    v_region = request.Post['_region']
+    v_time = request.Post['_time']
+    p = Pagedb.objects.filter(url = v_url)
+    p._view += 1
+    p.pg_views_set.create(region = v_region, _time = v_time)
+'''

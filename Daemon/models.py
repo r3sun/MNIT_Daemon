@@ -6,6 +6,7 @@ class Pages(models.Model):
     url = models.TextField()
 
 class PageInf(models.Model):
+    url = models.TextField()
     path = models.TextField()
     title = models.TextField()
     subj = models.CharField(max_length = 20)
@@ -13,6 +14,26 @@ class PageInf(models.Model):
     pub_time = models.DateTimeField('time_published')
     mk_array = models.TextField()
     author = models.CharField(max_length = 20)
-    aprnc = models.CharField(max_length = 1)
-    state = models.CharField(max_length = 1)
+    views = models.IntegerField(default = 0)
+
+class Deltd_Pages(models.Model):
+    url = models.TextField()
+    path = models.TextField()
+    title = models.TextField()
+    subj = models.CharField(max_length = 20)
+    typ = models.CharField(max_length = 20)
+    pub_time = models.DateTimeField('time_published')
+    mk_array = models.TextField()
+    author = models.CharField(max_length = 20)
+    views = models.IntegerField(default = 0)
+
+class Mdfyd_Pages(models.Model):
+    url = models.TextField()
+    path = models.TextField()
+    title = models.TextField()
+    subj = models.CharField(max_length = 20)
+    typ = models.CharField(max_length = 20)
+    pub_time = models.DateTimeField('time_published')
+    mk_array = models.TextField()
+    author = models.CharField(max_length = 20)
     views = models.IntegerField(default = 0)

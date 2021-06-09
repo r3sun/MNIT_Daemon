@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .models import Credentials
 from .encrypt_password import encrypt
 from .authentication import authenticate
-from Daemon.models import Pages
+from Daemon.models import Pages, PageInf
 from django.core import serializers
 from django.http import JsonResponse
 
@@ -56,7 +56,7 @@ def auther_pages(request):
 
 def get_auther_pages(request, offset):
     if authenticate(request):
-        p = Pages.objects.filter(author__icontains = request.session['_user']).order_by("-pub_time")[offset:offset + 8]
+        p = PageInf.objects.filter(author__icontains = request.session['_user']).order_by("-pub_time")[offset:offset + 8]
         if p.count() > 0:
             print(p.count())
             d = serializers.serialize('json', p)
