@@ -2,31 +2,47 @@
 <html>
 <head>
 <title>Create Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 :root {
   font-size: 16px;
-  --_font_family: Vardana, Sans-serif;
+  --_font_family_1: Vardana, Sans-serif;
   --_font_size: 0.9rem;
   --_color: rgb(80 150 255);
   --pg_nm_font_family: Arial, Helvetica;
   --pg_nm_font_size: 1.5625rem;
   --pg_url_font_family: ;
-}
 
+  --normal_font_size: 1rem;
+  --normal_font_family: var(--_font_family_1);
+  --normal_font: var(--normal_font_size) var(--normal_font_family);
+  --normal_border: 0.01rem solid #ccc;
+
+  --form_content_font_family: Vardana, Sans-serif;
+  --form_title_font: 2rem var(--_font_family_1);
+  --form_title_border: 0.2rem solid #999;
+
+  --form_select_font: 1.2rem var(--_font_family_1);
+
+  --page_url_font: 1.2rem "Courier New", monospace;
+}
+* {
+  box-sizing: border-box;
+}
 ::-webkit-scrollbar {
   width: 0.8rem;
 }
 ::-webkit-scrollbar-thumb {
   background-color: transparent;
-  border: 0.15rem solid #ff6969;
+  border: 0.15rem solid #ccc;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #ff6969;
+  background-color: #ccc;
   border: 0.15rem solid transparent;
 }
 ::-webkit-scrollbar-thumb:active {
-  background-color: rgb(80 150 255);
-  border: 0.15rem solid #ffffff;
+  background-color: #ccc;
+  border: 0.15rem solid #ccc;
 }
 ::-webkit-scrollbar-button {
   display: none;
@@ -64,318 +80,199 @@ body {
 }
 ._fill_available {
   width: -webkit-fill-available;
-  height: -webkit-fill-available;
+}
+
+._label {
+  font: var(--normal_font);
 }
 header {
-    background-color: rgb(80 150 255);
+  background-color: rgb(80 150 255);
 }
-._title, ._prvw_title {
-    font-size: 1.2rem;
-    font-family: var(--_font_family);
-    margin: 2rem;
-    text-transform: uppercase;
-    color: #ffffff;
+.title, .previww_title {
+  font-size: 1.2rem;
+  font-family: var(--_font_family_1);
+  margin: 2rem;
+  text-transform: uppercase;
+  color: #ffffff;
 }
-._frm_submit_cntnr {
-    height: fit-content;
-    margin-top: auto;
-    margin-right: 2rem;
-    margin-bottom: auto;
-    margin-left: auto;
+.form_submit_cntnr {
+  height: fit-content;
+  margin-top: auto;
+  margin-right: 2rem;
+  margin-bottom: auto;
+  margin-left: auto;
 }
-._publish_btn {
-    background-color: transparent;
-    color: #ffffff;
-    padding: 0.3rem;
-    margin: 0 0 0.5rem 0;
-    font: 1.2rem Vardana, sans-serif;
-    text-transform: uppercase;
-    text-align: center;
-    cursor: pointer;
-    border: 0.01rem solid #ffffff;
+.publish_button {
+  background-color: transparent;
+  color: #ffffff;
+  padding: 0.3rem;
+  margin: 0 0 0.5rem 0;
+  font: 1.2rem Vardana, sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  border: 0.01rem solid #ffffff;
 }
-._publish_btn:active {
-    background-color: rgb(24, 90, 189);
-    color: #ff6969;
-    border: 0.01rem solid #ff6969;
+.publish_button:active {
+  background-color: rgb(24, 90, 189);
+  color: #ff6969;
+  border: 0.01rem solid #ff6969;
 }
-._save_btn {
-    background-color: transparent;
-    color: #ffffff;
-    padding: 0.3rem;
-    margin: 0.5rem auto 0 auto;
-    width: auto;
-    font: 1.2rem Vardana, sans-serif;
-    text-transform: uppercase;
-    text-align: center;
-    cursor: pointer;
+.save_button {
+  background-color: transparent;
+  color: #ffffff;
+  padding: 0.3rem;
+  margin: 0.5rem auto 0 auto;
+  width: auto;
+  font: 1.2rem Vardana, sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
 }
-._save_btn:active {
-    background-color: #e7e7e7;
-    color: #000000;
+.save_button:active {
+  background-color: #e7e7e7;
+  color: #000000;
 }
-._body {
-  margin: 3rem 2rem 0 2rem;
+.main {
+  background-color: transparent;
+  padding: 3rem 2rem 0 2rem;
 }
-._body._inactive {
+.main._inactive {
   height: 0;
   overflow: hidden;
 }
-._form_container {
-  width: fit-content;
-  height: 22rem;
-}
-._frm_cntnr {
-  width: 26.71875rem!important;
-  overflow: hidden;
-  margin-right: 2rem;
-}
-._frm_title_cntnr {
+.form_container {
+  width: 100%;
   height: fit-content;
-  width: fit-content;
-  margin: 0 0 3rem 0;
-  border-bottom: 0.17rem solid #000!important;
-}
-._frm_title {
-  height: 2rem;
-  width: 40rem;
-  border: 0;
-  outline: none;
-  font-size: 1.5rem;
-  font-family: Vardana, Sans-serif;
-}
-._frm_title:focus {
-  border: 0;
-  outline: none;
-}
-._frm_mk_array_cntnr {
-    width: fit-content;
-}
-._frm_mk_array_lbl {
-  font-size: 1rem;
-  font-family: Vardana, Sans-serif;
-  border-bottom: 0.17rem solid #000;
-  text-transform: uppercase;
-}
-._frm_mk_array {
-    height: 6rem;
-    width: 40rem;
-    border: 0;
-    margin: 0.5rem 0;
-    outline: none;
-    font-size: 1rem;
-    resize: none;
-    font-family: Vardana, Sans-serif;
-}
-._frm_mk_array:focus {
-    border: 0;
-    outline: none;
-}
-._frm_mk_array::-webkit-scrollbar {
-  width: 0.5rem;
-  cursor: pointer;
-}
-._frm_mk_array::-webkit-scrollbar-button {
-  display: none;
-}
-._frm_mk_array::-webkit-scrollbar-thumb {
-  background-color: transparent;
-  border: 0.01rem solid #ff6969;
-}
-#_frm_ttl_msg {
-  display: none;
-  background-color: transparent;
-  width: fit-content;
-  font: 0.9rem Arial;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  padding: .4rem;
-  z-index: 2;
-  box-shadow: 0.4rem 0.4rem 0.9rem #cccccc!important;
-  animation: warning_anm 1s infinite;
-}
-select {
-  height: 2.256rem;
-  width: 10rem;
-  border: 0.01rem solid #ccc;
-  border-radius: 0;
-  font-size: 1.2rem;
-  font-family: Vardana, Sans-serif;
-}
-select:focus {
-  border: 0.01rem solid #ccc;
-  outline: none;
-  border-radius: 0;
-}
-select option {
-  height: 2.256rem!important;
-  width: 10rem!important;
-  padding: 8px 16px!important;
-  line-height: 1.5rem!important;
-  margin: 1rem 0!important;
 }
 
-#_frm_subj_msg {
-  display: none;
-  background-color: transparent;
-  width: fit-content;
-  font: 0.9rem Arial;
-  margin-top: 1.2rem;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  padding: .4rem;
-  z-index: 2;
-  box-shadow: 0.4rem 0.4rem 0.9rem #cccccc!important;
-  animation: warning_anm 1s infinite;
-}
-#_frm_typ_msg {
-  display: none;
-  background-color: transparent;
-  width: fit-content;
-  font: 0.9rem Arial;
-  margin-top: 1.2rem;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  padding: .4rem;
-  z-index: 2;
-  box-shadow: 0.4rem 0.4rem 0.9rem #cccccc!important;
-  animation: warning_anm 1s infinite;
-}
-#_frm_cntnt_msg {
-  display: none;
-  background-color: transparent;
-  width: fit-content;
-  font: 0.9rem Arial;
-  margin-top: 0;
-  margin-bottom: 0.4rem;
-  margin-left: 0;
-  margin-right: 0;
-  padding: .4rem;
-  z-index: 2;
-  box-shadow: 0.4rem 0.4rem 0.9rem #cccccc!important;
-  animation: warning_anm 1s infinite;
-}
 
-@keyframes warning_anm {
-  0% {border: 0.1rem solid var(--_color);}
-  25% {border: 0.1rem solid #ff6969;}
-  50% {border: 0.1rem solid #69ffff}
-  100% {border: 0.1rem solid #cccccc}
+.form_container form {
+  width: 100%;
+  height: fit-content;
 }
-._frm_selc_lbl {
-  font-size: 1rem;
-  font-family: Vardana, Sans-serif;
-  text-transform: uppercase;
-}
-._frm_selct_sprtr select option {
-  font-size: 1.2rem;
-  font-family: Vardana, Sans-serif;
-}
-._page_url_cntnr {
-  font-size: 1.2rem;
-  font-family: Vardana, Sans-serif;
-  margin: 2rem 0;
-}
-._page_url {
-  font-size: 1.2rem;
-  font-family: Courier, Sans-serif;
-}
-._file_upld_cntnr {
-  width: 26.71875rem!important;
-  margin-left: auto;
-  margin-right: 0;
-  margin-top: 5rem;
-}
-._file_upld_file_p {
-  background-color: rgb(80 150 255);
-  color: #ffffff;
-  padding: 0.3rem;
-  margin: 0 0 0.5rem 0;
-  height: 1.364rem;
-  width: fit-content;
-  font: 1.2rem Vardana, sans-serif;
-  text-transform: uppercase;
-  text-align: center;
-  cursor: pointer;
-  border: 0.01rem solid #ffffff;
-}
-._file_upld_submit {
-  background-color: rgb(80 150 255);
-  color: #ffffff;
-  padding: 0.3rem;
-  margin: 0 0 0.5rem 0;
-  height: 1.364rem;
-  width: fit-content;
-  font: 1.2rem Vardana, sans-serif;
-  text-transform: uppercase;
-  text-align: center;
-  cursor: pointer;
-  border: 0.01rem solid #ffffff;
-}
-#_file_upld_file {
-  display: none;
-}
-._upldd_file_cntnr {
-  width: 26.71875rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2rem;
-  overflow: scroll;
-}
-._file_snippet {
-  background-color: rgb(80 150 255);
-  display: flex;
-  justify-content: center;
-  height: 5rem;
-  width: 5rem;
-  margin: 0.03rem;
-}
-._frm_content {
-  height: 60vw;
+.form_title {
+  height: fit-content;
   width: 100%;
   border: 0;
+  border-bottom: var(--form_title_border);
+  outline: none;
+  font: var(--form_title_font);
+  margin: 0.5rem 0;
+}
+.form_title:focus {
+  outline: none;
+}
+
+
+.form_subject, .form_type {
+  height: fit-content;
+  width: 10rem;
+  border: var(--normal_border);
+  outline: none;
+  padding: 8px 16px!important;
+  font: var(--form_select_font);
+  margin: 0.5rem 0.5rem 0.5rem 0;
+}
+.form_subject:focus, .form_type:focus {
+  outline: none;
+}
+.form_subject option, .form_type option {
+  height: fit-content;
+  width: 100%!important;
+  padding: 8px 16px!important;
+  margin: 1rem 0!important;
+  font: var(--form_select_font);
+}
+
+.form_title.invalid, .form_subject.invalid, .form_type.invalid {
+  border: 0.01rem solid red;
+}
+.page_url_cntnr {
+  margin: 2rem 0;
+}
+.page_url {
+  font: var(--page_url_font);
+}
+
+
+/*
+  form_content_container
+
+*/
+.form_content_container {
+  width: 70%;
+  margin: 0 1rem 0 0;
+}
+.form_mk_array {
+  height: 6rem;
+  width: 100%;
+  border: var(--normal_border);
+  margin: 0;
+  outline: none;
+  font-size: 1.2rem;
+  resize: none;
+  padding: 0.3rem;
+  font-family: var(--form_content_font_family);
+}
+.form_mk_array:focus {
+  outline: none;
+}
+.form_mk_array::-webkit-scrollbar {
+  width: 0.5rem;
+  cursor: pointer;
+}
+.form_mk_array::-webkit-scrollbar-button {
+  display: none;
+}
+.form_mk_array::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border: 0.01rem solid #ccc;
+}
+
+
+.form_content {
+  height: 60vw;
+  width: 100%;
+  border: var(--normal_border);
   outline: none;
   font-size: 1.2rem;
   font-family: Vardana, Sans-serif;
-    border-top: 0.17rem solid #000!important;
+  margin: 0.5rem 0;
+  padding: 0.3rem;
+  resize: none;
 }
-._frm_content:focus {
-  border: 0;
+.form_content:focus {
   outline: none;
 }
-._frm_content::-webkit-scrollbar {
+.form_content::-webkit-scrollbar {
   width: 0.5rem;
 }
-._frm_content::-webkit-scrollbar-thumb {
+.form_content::-webkit-scrollbar-thumb {
   background-color: transparent;
-  border: 0.01rem solid #ff6969;
+  border: 0.01rem solid #ccc;
 }
-._frm_content::-webkit-scrollbar-button {
+.form_content::-webkit-scrollbar-button {
   display: none;
 }
-._prvw_btn {
+.preview_button {
   background-color: rgb(80 150 255);
   color: #ffffff;
   padding: 0.3rem;
   margin: 0 0 0.5rem 0;
-  height: 1.364rem;
+  height: fit-content;
   width: -webkit-fill-available;
   font: 1.2rem Vardana, sans-serif;
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
-  border: 0.01rem solid #ffffff;
 }
 
-._prvw_cntnr {
+.preview_container {
   height: 0;
   overflow: hidden;
 }
-._prvw_cntnr._active {
+.preview_container._active {
   background-color: #fff;
   position: absolute;
   top: 0;
@@ -386,10 +283,10 @@ select option {
   width: 100vw;
   overflow: hidden;
 }
-._prvw_heading {
+.preview_heading {
   background-color: var(--_color);
 }
-._prvw_ext_btn {
+.prvw_ext_btn {
   background-color: rgb(80 150 255);
   color: #ffffff;
   padding: 0.3rem;
@@ -402,6 +299,61 @@ select option {
   cursor: pointer;
   border: 0.01rem solid #ffffff;
 }
+
+/*
+  form_file_upload
+
+*/
+.form_file_upload {
+  width: 30%;
+  margin: 0 0 0 1rem;
+}
+
+.file_upload_container {
+  width: 100%;
+  margin: 0;
+}
+.file_upload_container form {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 0 0.5rem 0;
+}
+.file_upld_submit {
+  background-color: rgb(80 150 255);
+  color: #ffffff;
+  padding: 0.3rem;
+  margin: 0 0;
+  width: -webkit-fill-available;
+  font: 1.2rem Vardana, sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+}
+#_file_upld_file {
+  display: none;
+}
+.upldd_file_cntnr {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #fff;
+  width: 100%;
+  height: fit-content;
+  min-height: 10rem;
+  padding: 0.5rem;
+  overflow: scroll;
+  border: var(--normal_border);
+}
+._file_snippet {
+  background-color: rgb(80 150 255);
+  display: flex;
+  justify-content: center;
+  height: 5rem;
+  width: 5rem;
+  margin: 0.2rem;
+  overflow: hidden;
+}
+
 ._file_snippet_top {
   display: flex;
   justify-content: center;
@@ -421,6 +373,7 @@ select option {
   position: relative;
   padding: 0.9rem 0.3rem;
   width: 5rem;
+  height: 5rem;
   opacity: 0;
 }
 ._upldd_file_nm:hover + ._fl_btns {
@@ -432,6 +385,8 @@ select option {
 ._upldd_file_nm {
   z-index: 0;
   position: absolute;
+  width: 5rem;
+  overflow: hidden;
 }
 ._upldd_img_file {
   height: 5rem;
@@ -464,184 +419,167 @@ select option {
 <body>
 <header>
   <div class='_flex_row'>
-    <p class='_title'>Create New Page</p>
+    <p class='title'>Create New Page</p>
 
-    <div class='_frm_submit_cntnr'>
-      <p class='_publish_btn' onclick='_pblsh()'>Publish</p>
-      <p class='_save_btn'onclick='_save()'>Save</p>
+    <div class='form_submit_cntnr'>
+      <p class='publish_button' onclick='_pblsh()'>Publish</p>
+      <p class='save_button'onclick='_save()'>Save</p>
     </div>
   </div>
 </header>
 <p id='pg'></p>
-<div class='_body' id='_body'>
-  <div class='_flex_column'>
-    <div class='_flex_row _form_container'>
-      <div class='_frm_cntnr'>
-        <form action='{% url 'upld_new_page' %}' id='_crt_pg_frm' method='POST'>
-          {% csrf_token %}
-          <div class='_frm_elmnts _flex_column'>
-            <div class='_flex_column _frm_title_cntnr'>
-              <p id='_frm_ttl_msg' class='_frm_ttl_msg'>This field is required</p>
-              <input type='text' name='_title' class='_frm_title' id='_frm_title' placeholder='Title of the page is...' required />
-            </div>
-            <div class='_flex_row _frm_selc_cntnr'>
-              <div class='_frm_selct_sprtr _left'>
-                <lable class='_frm_selc_lbl' for='_frm_mc'>Subject:</lable>
-                <div class='_frm_subj-cumiz'>
-                  <select name='_subj' id='_frm_subj' required onchange='gen_path()'>
-                    <option value=''>null</option>
-                    <option value='math'>Math</option>
-                    <option value='physics'>Physics</option>
-                    <option value='chemistry'>Chemistry</option>
-                    <option value='unix'>Unix</option>
-                    <option value='windows'>Windows</option>
-                    <option value='c'>C</option>
-                  </select>
-                </div>
-                <p id='_frm_subj_msg'>This field is required</p>
-              </div>
-              <div class='_frm_selct_sprtr _right'>
-                <lable class='_frm_selc_lbl' for='_frm_mc'>Type:</lable>
-                <div class='_frm_type-cumiz'>
-                  <select name='_type' id='_frm_type' required onchange='gen_path()'>
-                    <option value=''>null</option>
-                    <option value='how'>How</option>
-                    <option value='what'>What</option>
-                    <option value='why'>Why</option>
-                  </select>
-                </div>
-                <p id='_frm_typ_msg'>This field is required</p>
-              </div>
-            </div>
-          </div>
-        </form>
+<div class='main' id='main'>
+  <div class='_flex_row form_container'>
+    <form action='{% url 'upld_new_page' %}' id='_crt_pg_form' method='POST'>
+      {% csrf_token %}
+      <div class='_form_elmnts _flex_column'>
+        <input type='text' name='_title' class='form_title' id='form_title' placeholder='Title of the page is...' required onkeypress='ttl_updt()' />
+        <div class='_flex_row'>
+          <select name='_subj' id='form_subject' class="form_subject" required onchange='subj_updt()'>
+            <option value=''>Subject</option>
+            <option value='math'>Math</option>
+            <option value='physics'>Physics</option>
+            <option value='chemistry'>Chemistry</option>
+            <option value='unix'>Unix</option>
+            <option value='windows'>Windows</option>
+            <option value='c'>C</option>
+          </select>
+
+          <select name="_type" id="form_type" class="form_type" required onchange="typ_updt()">
+            <option value=''>Type</option>
+            <option value='how'>How</option>
+            <option value='what'>What</option>
+            <option value='why'>Why</option>
+          </select>
+        </div>
       </div>
-      <div class='_file_upld_cntnr _flex_column'>
-        <form action="{% url 'upldFile' %}" id='_upld_file_frm' method="post" enctype="multipart/form-data">
+    </form>
+  </div>
+
+  <p class='page_url_cntnr'><span class="_label">URL&nbsp;:&nbsp;&nbsp;</span><span class='page_url' id='page_url'></span></p>
+
+  <div class="_flex_row _fill_available">
+    <div class="_container form_content_container">
+      <textarea form='_crt_pg_form' name='_mk_array' placeholder='Meta keywords...' class='form_mk_array' id='form_mk_array'></textarea>
+
+      <textarea name='_cntnt' class='form_content _fill_available' id='form_content' form='_crt_pg_form' placeholder='Content of the page is...'></textarea>
+      <p class='preview_button' onclick='preview()'>preview</p>
+    </div>
+
+    <div class="_container form_file_upload">
+      <div class='file_upload_container _flex_column'>
+        <form action="{% url 'upldFile' %}" id='_upld_file_form' method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <input id='_file_upld_title' type='hidden' name='_title'/>
           <input id='_file_upld_subj' type='hidden' name='_subj'/>
           <input id='_file_upld_type' type='hidden' name='_type'/>
-          <input type='file' name='_files' multiple='' required='' id='_file_upld_file' onchange='_upld_file_click()'>
-          <p class='_file_upld_submit' onclick='_slct_file_mnu()'>Upload File</p>
+          <input type='file' name='_files' multiple='' required='' id='_file_upld_file' onchange='_upld_file()'>
+          <p class='file_upld_submit' onclick='_slct_file_mnu()'>Upload File</p>
         </form>
-        <div class='_upldd_file_cntnr _flex_row' id='_upldd_file_cntnr'>
-    
+        <p class="_label">Uploaded Files:</p>
+        <div class='upldd_file_cntnr _flex_row' id='upldd_file_cntnr'>
+
         </div>
       </div>
     </div>
-    <p class='_page_url_cntnr'><span>URL&nbsp;:&nbsp;&nbsp;<span class='_page_url' id='_page_url'></span></p>
-  </div>
-
-  <div class='_frm_mk_array_cntnr _flex_column'>
-    <lable for='_frm_mk_array' class='_frm_mk_array_lbl'>Meta Keywords:</lable>
-    <textarea form='_crt_pg_frm' name='_mk_array' placeholder='Meta keywords...' class='_frm_mk_array' id='_frm_mk_array'></textarea>
-  </div>
-
-  <div class='_flex_column _frm_txara_cntnr'>
-    <p id='_frm_cntnt_msg'>This field is required</p>
-    <textarea name='_cntnt' class='_frm_content' id='_frm_content' form='_crt_pg_frm' placeholder='Content of the page is...'></textarea>
-    <p class='_prvw_btn' onclick='preview()'>preview</p>
   </div>
 
 </div>
 
 <script>
 function _slct_file_mnu() {
-  document.getElementById('_file_upld_file').click();
+  var ttl, subj, typ;
+  ttl = document.getElementById('form_title');
+  subj = document.getElementById('form_subject');
+  typ = document.getElementById('form_type');
+  if (ttl.value.length === 0) {
+    ttl.classList.add("invalid");
+  } else if (subj.value.length === 0) {
+    subj.classList.add("invalid");
+  } else if (typ.value.length === 0) {
+    typ.classList.add("invalid");
+  } else {
+    document.getElementById('_file_upld_file').click();
+  }
 }
 function gen_path() {
-  var _title = document.getElementById('_frm_title').value;
+  var _title = document.getElementById('form_title').value;
   while (_title.includes(" ")) {
     _title = _title.replace(" ", "_");
   }
-  var _subj = document.getElementById('_frm_subj').value;
-  var _type = document.getElementById('_frm_type').value;
-  subj_updt();
-  typ_updt();
-  document.getElementById('_page_url').innerHTML = _subj + '/' + _type + '/' +_title;
+  var _subj = document.getElementById('form_subject').value;
+  var _type = document.getElementById('form_type').value;
+  document.getElementById('page_url').innerHTML = _subj + '/' + _type + '/' +_title;
 }
 
-document.getElementById('_frm_title').addEventListener("change", function() {
-  gen_path()
-  var ttl;
-  ttl = document.getElementById('_frm_title').value;
-  document.getElementById('_file_upld_title').value = ttl;
-  document.getElementById('_frm_ttl_msg').style.display = "none";
+document.getElementById('form_content').addEventListener("keypress", function() {
+  gen_path();
+  document.getElementById('_form_cntnt_msg').classList.add("invalid");
 });
 
-document.getElementById('_frm_content').addEventListener("keypress", function() {
-  gen_path();
-  document.getElementById('_frm_cntnt_msg').style.display = "none";
-});
+function ttl_updt() {
+  var ttl;
+  ttl = document.getElementById('form_title');
+  if (ttl.value.length > 0) {
+    ttl.classList.remove("invalid");
+    gen_path();
+  } else {
+    ttl.classList.add("invalid");
+  }
+}
 
 function subj_updt() {
   var subj;
-  subj = document.getElementById('_frm_subj').value;
-  document.getElementById('_file_upld_subj').value = subj;
-  document.getElementById('_frm_subj_msg').style.display = "none";
+  subj = document.getElementById('form_subject');
+  if (subj.value.length > 0) {
+    subj.classList.remove("invalid");
+    document.getElementById('_file_upld_subj').value = subj.value;
+    gen_path()
+  } else {
+    subj.classList.add("invalid");
+  }
 }
 
 function typ_updt() {
   var typ;
-  typ = document.getElementById('_frm_type').value;
-  document.getElementById('_file_upld_type').value = typ;
-  document.getElementById('_frm_typ_msg').style.display = "none";
-}
-
-function _pblsh() {
-  var ttl, subj, typ, cntnt, ttlmsg, subjmsg, typmsg, cntntmsg;
-  ttl = document.getElementById('_frm_title').value;
-  subj = document.getElementById('_frm_subj').value;
-  typ = document.getElementById('_frm_type').value;
-  cntnt = document.getElementById('_frm_content').value;
-  ttlmsg = document.getElementById('_frm_ttl_msg');
-  subjmsg = document.getElementById('_frm_subj_msg');
-  typmsg = document.getElementById('_frm_typ_msg');
-  cntntmsg = document.getElementById('_frm_cntnt_msg');
-  if (ttl.length === 0) {
-    ttlmsg.style.display = "block";
-  } else if (subj.length === 0) {
-    subjmsg.style.display = "block";
-  } else if (typ.length === 0) {
-    typmsg.style.display = "block";
-  } else if (cntnt.length === 0) {
-    cntntmsg.style.display = "block";
+  typ = document.getElementById('form_type');
+  if (typ.value.length > 0) {
+    typ.classList.remove("invalid");
+    document.getElementById('_file_upld_type').value = typ.value;
+    gen_path()
   } else {
-    document.getElementById('_crt_pg_frm').submit();
+    typ.classList.add("invalid");
   }
 }
 
-function _upld_file_click() {
-  var ttl, subj, typ, cntnt, ttlmsg, subjmsg, typmsg, cntntmsg;
-  ttl = document.getElementById('_frm_title').value;
-  subj = document.getElementById('_frm_subj').value;
-  typ = document.getElementById('_frm_type').value;
-  cntnt = document.getElementById('_frm_content').value;
-  ttlmsg = document.getElementById('_frm_ttl_msg');
-  subjmsg = document.getElementById('_frm_subj_msg');
-  typmsg = document.getElementById('_frm_typ_msg');
-  cntntmsg = document.getElementById('_frm_cntnt_msg');
-  if (ttl.length === 0) {
-    ttlmsg.style.display = "block";
-  } else if (subj.length === 0) {
-    subjmsg.style.display = "block";
-  } else if (typ.length === 0) {
-    typmsg.style.display = "block";
+function _pblsh() {
+  var ttl, subj, typ, cntnt;
+  ttl = document.getElementById('form_title');
+  subj = document.getElementById('form_subject');
+  typ = document.getElementById('form_type');
+  cntnt = document.getElementById('form_content');
+  if (ttl.value.length === 0) {
+    ttl.classList.add("invalid");
+  } else if (subj.value.length === 0) {
+    subj.classList.add("invalid");
+  } else if (typ.value.length === 0) {
+    typ.classList.add("invalid");
+  } else if (cntnt.value.length === 0) {
+    cntnt.classList.add("invalid");
   } else {
-    _upld_file();
+    document.getElementById('_crt_pg_form').submit();
   }
 }
 
 function _upld_file() {
   var xhttp = new XMLHttpRequest();
-  var form = new FormData(document.getElementById('_upld_file_frm'));
+  var form = new FormData(document.getElementById('_upld_file_form'));
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       f_f_pnl(this.responseText);
     }
   };
-  var act = document.getElementById('_upld_file_frm').action;
+  var act = document.getElementById('_upld_file_form').action;
   xhttp.open("POST", act, true);
   xhttp.send(form);
 }
@@ -650,7 +588,7 @@ function f_f_pnl(data) {
   var f_d = JSON.parse(d)
   if(f_d) {
     var i, doc, htmldt;
-    doc = document.getElementById('_upldd_file_cntnr');
+    doc = document.getElementById('upldd_file_cntnr');
     for(i = 0; i < f_d.length; i++) {
       var f_data = f_d[i];
       if(f_data.name && f_data.url && f_data.type) {
@@ -661,10 +599,10 @@ function f_f_pnl(data) {
         } else {
           htmldt = "<p>null</p>";
         }
-      } else if(f_data.warning && f_data.name) {
-        htmldt = "<p class='_warning'>" + f_data.name + f_data.warning + "</p>";
-      }
       doc.innerHTML += htmldt;
+      } else if(f_data.warning && f_data.name) {
+        alert(f_data.name + " " + f_data.warning);
+      }
     }
   }
 }
@@ -676,14 +614,14 @@ function cpy_file_link(el) {
 }
 function _save() {
   var ttl, subj, typ, cntnt, ttlmsg, subjmsg, typmsg, cntntmsg;
-  ttl = document.getElementById('_frm_title').value;
-  subj = document.getElementById('_frm_subj').value;
-  typ = document.getElementById('_frm_type').value;
-  cntnt = document.getElementById('_frm_content').value;
-  ttlmsg = document.getElementById('_frm_ttl_msg');
-  subjmsg = document.getElementById('_frm_subj_msg');
-  typmsg = document.getElementById('_frm_typ_msg');
-  cntntmsg = document.getElementById('_frm_cntnt_msg');
+  ttl = document.getElementById('form_title').value;
+  subj = document.getElementById('form_subject').value;
+  typ = document.getElementById('form_type').value;
+  cntnt = document.getElementById('form_content').value;
+  ttlmsg = document.getElementById('_form_ttl_msg');
+  subjmsg = document.getElementById('form_subject_msg');
+  typmsg = document.getElementById('_form_typ_msg');
+  cntntmsg = document.getElementById('_form_cntnt_msg');
   if (ttl.length === 0) {
     ttlmsg.style.display = "block";
   } else if (subj.length === 0) {
@@ -693,31 +631,31 @@ function _save() {
   } else if (cntnt.length === 0) {
     cntntmsg.style.display = "block";
   } else {
-    document.getElementById('_crt_pg_frm').action = '{% url 'save_new_page' %}';
-    document.getElementById('_crt_pg_frm').submit();
+    document.getElementById('_crt_pg_form').action = '{% url 'save_new_page' %}';
+    document.getElementById('_crt_pg_form').submit();
   }
 }
 
 function preview() {
-  var cntnt = document.getElementById('_frm_content').value;
-  document.getElementById('_prvw').innerHTML = cntnt;
-  document.getElementById('_body').className = '_body _inactive'
-  document.getElementById('_prvw_cntnr').className = '_prvw_cntnr _active';
+  var cntnt = document.getElementById('form_content').value;
+  document.getElementById('preview').innerHTML = cntnt;
+  document.getElementById('main').className = 'main _inactive'
+  document.getElementById('preview_container').className = 'preview_container _active';
 }
 function ext_preview() {
-  var cntnt = document.getElementById('_frm_content').value;
-  document.getElementById('_prvw').innerHTML = 'null';
-  document.getElementById('_body').className = '_body'
-  document.getElementById('_prvw_cntnr').className = '_prvw_cntnr';
+  var cntnt = document.getElementById('form_content').value;
+  document.getElementById('preview').innerHTML = 'null';
+  document.getElementById('main').className = 'main'
+  document.getElementById('preview_container').className = 'preview_container';
 }
 </script>
 
-  <div class='_prvw_cntnr' id='_prvw_cntnr'>
-    <div class='_prvw_heading _flex_row'>
-      <p class='_prvw_ext_btn' onclick='ext_preview()'>Close</p>
-      <p class='_prvw_title'>Preview of your content</p>
+  <div class='preview_container' id='preview_container'>
+    <div class='preview_heading _flex_row'>
+      <p class='prvw_ext_btn' onclick='ext_preview()'>Close</p>
+      <p class='previww_title'>Preview of your content</p>
     </div>
-    <div class='_prvw' id='_prvw'>
+    <div class='preview' id='preview'>
     </div>
   </div>
 </body>

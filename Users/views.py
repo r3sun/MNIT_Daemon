@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .models import Credentials
 from .encrypt_password import encrypt
 from .authentication import authenticate
-from Daemon.models import Pages, PageInf
+from Daemon.models import *
 from django.core import serializers
 from django.http import JsonResponse
 
@@ -13,7 +13,10 @@ from django.http import JsonResponse
 def login(request):
     if request.method == 'POST':
         if request.session.test_cookie_worked():
-            u = Credentials.objects.get(name = request.POST['_user'])
+            try:
+                u = Credentials.objects.get(name = request.POST['_user'])
+            except:
+                u = None
             if u and u.password == request.POST['_pswrd']:
                 request.session['_user'] = u.name
                 request.session['_password'] = encrypt(u.password)
@@ -40,9 +43,10 @@ def getLoginF(request):
 
 def get_cPageF(request):
     context = {'url' : '/cPageF/'}
-    request.session.delete_test_cookie()
-    request.session.set_test_cookie()
     return render(request, 'user/pass.html', context)
+
+def get_uPageF(request):
+    return render(request, 'upload_file_form.html',)
 
 def auther_pages(request):
     if authenticate(request):
@@ -58,7 +62,6 @@ def get_auther_pages(request, offset):
     if authenticate(request):
         p = PageInf.objects.filter(author__icontains = request.session['_user']).order_by("-pub_time")[offset:offset + 8]
         if p.count() > 0:
-            print(p.count())
             d = serializers.serialize('json', p)
             request.session.delete_test_cookie()
             request.session.set_test_cookie()

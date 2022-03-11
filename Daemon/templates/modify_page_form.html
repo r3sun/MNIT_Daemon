@@ -158,14 +158,18 @@ header {
   text-transform: uppercase;
 }
 ._frm_mk_array {
-    height: 6rem;
-    width: 40rem;
-    border: 0;
-    margin: 0.5rem 0;
-    outline: none;
-    font-size: 1rem;
-    resize: none;
-    font-family: Vardana, Sans-serif;
+  height: 6rem;
+  width: 40rem;
+  border: 0;
+  margin: 0.5rem 0;
+  outline: none;
+  font-size: 1rem;
+  resize: none;
+  font-family: Vardana, Sans-serif;
+}
+._frm_mk_array_hidden {
+  height: 0!important;
+  width: 0!important;
 }
 ._frm_mk_array:focus {
     border: 0;
@@ -476,15 +480,17 @@ select option {
   <div class='_flex_column'>
     <div class='_flex_row _form_container'>
       <div class='_frm_cntnr'>
-        <form action='{% url 'upld_new_page' %}' id='_mdfy_pg_frm' method='POST'>
+        <form action='{% url 'mdfy_new_page' %}' id='_mdfy_pg_frm' method='POST'>
           {% csrf_token %}
           <div class='_frm_elmnts _flex_column'>
             <div class='_flex_column _frm_title_cntnr'>
               <p id='_frm_ttl_msg' class='_frm_ttl_msg'>This field is required</p>
+              <input type='hidden' name='_ititle' value='{{ title }}'/>
               <input type='text' name='_title' class='_frm_title' id='_frm_title' placeholder='Title of the page is...' required value='{{ title }}'/>
             </div>
             <div class='_flex_row _frm_selc_cntnr'>
               <div class='_frm_selct_sprtr _left'>
+                <input type='hidden' name='_isubj' value='{{ subj }}'/>
                 <lable class='_frm_selc_lbl' for='_frm_mc'>Subject:</lable>
                 <div class='_frm_subj-cumiz'>
                   <select name='_subj' id='_frm_subj' required onchange='gen_path()'>
@@ -500,6 +506,7 @@ select option {
                 <p id='_frm_subj_msg'>This field is required</p>
               </div>
               <div class='_frm_selct_sprtr _right'>
+                <input type='hidden' name='_itype' value='{{ typ }}'/>
                 <lable class='_frm_selc_lbl' for='_frm_mc'>Type:</lable>
                 <div class='_frm_type-cumiz'>
                   <select name='_type' id='_frm_type' required onchange='gen_path()'>
@@ -533,6 +540,7 @@ select option {
   </div>
 
   <div class='_frm_mk_array_cntnr _flex_column'>
+    <textarea form='_mdfy_pg_frm' name='_imk_array' class='_frm_mk_array_hidden' id='_frm_mk_array_hidden'>{{ mk_array }}</textarea>
     <lable for='_frm_mk_array' class='_frm_mk_array_lbl'>Meta Keywords:</lable>
     <textarea form='_mdfy_pg_frm' name='_mk_array' placeholder='Meta keywords...' class='_frm_mk_array' id='_frm_mk_array'>{{ mk_array }}</textarea>
   </div>
@@ -547,7 +555,22 @@ select option {
 
 <script>
 function _slct_file_mnu() {
+  set_f_u_d();
+  gen_path();
   document.getElementById('_file_upld_file').click();
+}
+function set_f_u_d() {
+  ft = document.getElementById('_file_upld_title');
+  fs = document.getElementById('_file_upld_subj');
+  ftyp = document.getElementById('_file_upld_type');
+  ttl = document.getElementById('_frm_title').value;
+  subj = document.getElementById('_frm_subj').value;
+  typ = document.getElementById('_frm_type').value;
+  if (chk_frm()) {
+    ft.value = ttl;
+    fs.value = subj;
+    ftyp.value = typ;
+  }
 }
 function gen_path() {
   var _title = document.getElementById('_frm_title').value;
@@ -587,8 +610,7 @@ function typ_updt() {
   document.getElementById('_file_upld_type').value = typ;
   document.getElementById('_frm_typ_msg').style.display = "none";
 }
-
-function _updt() {
+function chk_frm() {
   var ttl, subj, typ, cntnt, ttlmsg, subjmsg, typmsg, cntntmsg;
   ttl = document.getElementById('_frm_title').value;
   subj = document.getElementById('_frm_subj').value;
@@ -607,29 +629,18 @@ function _updt() {
   } else if (cntnt.length === 0) {
     cntntmsg.style.display = "block";
   } else {
+    return 1;
+  }
+}
+function _updt() {
+  if (chk_frm()) {
     document.getElementById('_mdfy_pg_frm').submit();
   }
 }
 
 function _upld_file_click() {
-  var ttl, subj, typ, cntnt, ttlmsg, subjmsg, typmsg, cntntmsg;
-  ttl = document.getElementById('_frm_title').value;
-  subj = document.getElementById('_frm_subj').value;
-  typ = document.getElementById('_frm_type').value;
-  cntnt = document.getElementById('_frm_content').value;
-  ttlmsg = document.getElementById('_frm_ttl_msg');
-  subjmsg = document.getElementById('_frm_subj_msg');
-  typmsg = document.getElementById('_frm_typ_msg');
-  cntntmsg = document.getElementById('_frm_cntnt_msg');
-  if (ttl.length === 0) {
-    ttlmsg.style.display = "block";
-  } else if (subj.length === 0) {
-    subjmsg.style.display = "block";
-  } else if (typ.length === 0) {
-    typmsg.style.display = "block";
-  } else {
-    _upld_file();
-  }
+  set_f_u_d();
+  _upld_file();
 }
 
 function _upld_file() {

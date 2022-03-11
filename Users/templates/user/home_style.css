@@ -12,25 +12,58 @@
   --ntf_font_size: 2rem;
 }
 
+*, *:before, *:after {
+  box-sizing: border-box!important;
+}
+p {
+  margin-top: 0!important;
+  margin-bottom: 0!important;
+}
+._centerV {
+  margin-top: auto!important;
+  margin-bottom: auto!important;
+}
+._centerH {
+  margin-left: auto!important;
+  margin-right: auto!important;
+}
+
+._centerV_items {
+  display: flex;
+  align-items: center;
+}
+._centerH_items {
+  display: flex;
+  justify-content: center;
+}
+._flex_column {
+  display: flex;
+  flex-direction: column;
+}
+._flex_row {
+  display: flex;
+  flex-direction: row;
+}
+._fill_available {
+  width: -webkit-fill-available!important;
+}
 ._left {
   margin-left: 0;
   margin-right: auto;
+  float: left;
 }
 ._right {
   margin-left: auto;
   margin-right: 0;
+  float: right;
 }
-._flex_row {
-    display: flex;
-    flex-direction: row;
+._container {
+  padding: 0.01rem 0.5rem;
 }
-._flex_column {
-    display: flex;
-    flex-direction: column;
-}
-._flex_row_rev {
-    display: flex;
-    flex-direction: row-reverse;
+._container::before , ._container:after {
+  content: "";
+  display: block;
+  clear: both;
 }
 ._no-wrap {
     display: flex;
@@ -52,11 +85,11 @@ header {
   padding: 0;
   margin: 0 0 2rem 0;
 }
-.title_cntnr {
+.title_container {
   height: 3.01rem;
   width: fit-content;
 }
-._title {
+header .title {
   margin: 0 auto 0 2rem;
   padding: 0.369rem;
   height: fit-content;
@@ -67,8 +100,8 @@ header {
   text-transform: uppercase;
   color:#fff;
 }
-.user_menu_cntnr {
-  height: 3rem;
+.user_menu_container {
+  height: fit-content;
   margin: 0 2rem 0 auto;
   overflow: visible;
 }
@@ -85,7 +118,7 @@ header {
   height: 10rem;
   transition: height 0.3s;
 }
-._profile_image {
+.profile_image {
   height: 3rem;
   width: 3rem;
   border-radius: 50%;

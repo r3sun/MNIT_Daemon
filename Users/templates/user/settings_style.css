@@ -23,11 +23,11 @@
   border-radius: 0.3rem;
 }
 .frm_input:focus {
-  border: 0.01rem solid var(--color);
+  border: 0.01rem solid var(--bg_color);
   outline: none;
 }
 .frm_submit {
-  background-color: var(--color);
+  background-color: var(--bg_color);
   color: #ffffff;
   width: 15rem;
   height: 2rem;

@@ -8,7 +8,8 @@
   margin-right: 0;
   box-shadow: 0.4rem 0.4rem 0.9rem #ccc!important;
 }
-._page-nm {
+.page_title {
+  background-color: #ffffff;
   color: #000;
   height: fit-content;
   width: fit-content;
@@ -16,6 +17,11 @@
   text-decoration: none;
   font-size: var(--pg_nm_font_size);
   font-family: var(--pg_nm_font_family);
+  border: 0;
+}
+._page-nm:focus {
+  outline: none;
+  border: 0;
 }
 ._page_athr_time {
   font-size: var(--_font_size);

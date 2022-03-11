@@ -1,1 +1,1 @@
-env\Scripts\python.exe manage.py runserver
+env\Scripts\activate.bat && py manage.py runserver

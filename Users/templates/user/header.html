@@ -1,0 +1,20 @@
+<header class='_flex_column _centerV_items _fill_available'>
+    <div class="_flex_row _fill_available">
+        <p class='title _left'>MNIT</p>
+        <div class='user_menu_container _right'>
+            <img src='{% static 'evan.jpg' %}' class='profile_image' onclick='shw_u_menu()'/>
+            <div class='user_menu' id='user_menu'>
+                <p onclick='hid_u_menu()'><i class="material-icons">&#xe14c;</i></p>
+                <p>Logout</p>
+            </div>
+        </div>
+    </div>
+    <nav class='_flex_row _fill_available'>
+        <a href='{{ main_url }}{% url 'get_CPageF' %}' class='_left'>Creat New Page</a>
+        <div class='_right _flex_row'>
+            <a href='{{ main_url }}{% url 'home' %}'>Home</a>
+            <a href='{{ main_url }}{% url 'pages' %}'>Pages</a>
+            <a href='{{ main_url }}{% url 'settings' %}'>Settings</a>
+        </div>
+    </nav>
+</header>
