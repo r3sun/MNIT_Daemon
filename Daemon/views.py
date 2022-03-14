@@ -64,7 +64,7 @@ def mPageF(request, _subj, _type, _title):
             context = {'title' : p.title, 'subj' : p.subj, 'typ' : p.typ, 'content' : c, 'mk_array' : p.mk_array}
             return render(request, 'modify_page_form.html', context)
         except:
-            return render(request, 'msg.html', {'msg' : 'page with this url doesn\'t exists'})
+            return render(request, 'message.html', {'message' : 'page with this url doesn\'t exists'})
     else:
         return render(request, 'user/login.html', {'notification' : 'non-auhenticated user'})
 
@@ -83,7 +83,7 @@ def upld_new_page(request):
             _path = _url + "/index.html"
             try:
                 p = Pages.objects.get(url = _url)
-                return render(request, 'msg.html', {'msg' : 'page with the same name already exists'})
+                return render(request, 'message.html', {'message' : 'page with the same name already exists'})
             except:
                 c = creat_page_files(_url, _cntnt)
                 try:
@@ -97,9 +97,9 @@ def upld_new_page(request):
                     p.save()
                     return render(request, _path, )
                 else:
-                    return render(request, 'msg.html', {'msg' : 'couldn\'t creat page'})
+                    return render(request, 'message.html', {'message' : 'couldn\'t creat page'})
         else:
-            return render(request, 'msg.html', {'msg' : 'method isn\'t post'})
+            return render(request, 'message.html', {'message' : 'method isn\'t post'})
     else:
         return render(request, 'login.html', {'notification' : 'non-auhenticated user'})
 
@@ -117,7 +117,7 @@ def save_new_page(request):
             _path = _url + "/index.html"
             try:
                 p = Pages.objects.get(url = _url)
-                return render(request, 'msg.html', {'msg' : 'page with the same name already exists'})
+                return render(request, 'message.html', {'message' : 'page with the same name already exists'})
             except:
                 c = creat_page_files(_url, _cntnt)
                 try:
@@ -131,11 +131,11 @@ def save_new_page(request):
                     pinf.save()
                     return render(request, _path, )
                 else:
-                    return render(request, 'msg.html', {'msg' : 'couldn\'t creat page'})
+                    return render(request, 'message.html', {'message' : 'couldn\'t creat page'})
             else:
-                return render(request, 'msg.html', {'msg' : 'page with the same name already exists'})
+                return render(request, 'message.html', {'message' : 'page with the same name already exists'})
         else:
-            return render(request, 'msg.html', {'msg' : 'method isn\'t post'})
+            return render(request, 'message.html', {'message' : 'method isn\'t post'})
     else:
         return render(request, 'login.html', {'notification' : 'non-auhenticated user'})
 
@@ -211,11 +211,11 @@ def mdfy_new_page(request):
                 pinf.save()
                 p.url = _url
                 p.save()
-                return render(request, 'msg.html', {'msg' : 'successfully modified page'})
+                return render(request, 'message.html', {'message' : 'successfully modified page'})
             except:
-                return render(request, 'msg.html', {'msg' : 'couldn\'t modify page'})
+                return render(request, 'message.html', {'message' : 'couldn\'t modify page'})
         else:
-            return render(request, 'msg.html', {'msg' : 'method isn\'t post'})
+            return render(request, 'message.html', {'message' : 'method isn\'t post'})
     else:
         return render(request, 'login.html', {'notification' : 'non-auhenticated user'})
 
@@ -242,7 +242,7 @@ def upload_files(request):
                 d = [{"name" : "null", "url" : "null"}]
                 return JsonResponse(d, safe=False)
         else:
-            return render(request, 'msg.html', {'msg' : 'method isn\'t post'})
+            return render(request, 'message.html', {'message' : 'method isn\'t post'})
     else:
         return render(request, 'login.html', {'notification' : 'non-auhenticated user'})
 

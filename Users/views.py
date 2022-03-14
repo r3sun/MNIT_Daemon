@@ -22,6 +22,7 @@ def login(request):
                 request.session['_password'] = encrypt(u.password)
                 request.session.delete_test_cookie()
                 request.session.set_test_cookie()
+                context = {'title' : 'My Pages', 'main_url' : 'http://127.0.0.1:8000'}
                 return render(request, 'user/home.html', )
             else:
                 request.session.set_test_cookie()

@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Message | MNIT</title>
+<style>
+	
+.notification_container {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s;
+}
+.notification_container.active {
+  height: var(--notification_container_active_height);
+  overflow: hidden;
+  transition: height 0.3s 0.6s;
+}
+.notification {
+  background-color: var(--notification_container_bg_color);
+  margin: 0 auto 2rem auto;
+  padding: var(--normal_padding);
+  width: -webkit-fill-available;
+  height: 4rem;
+  box-shadow: var(--notification_container_box_shadow);
+}
+.notification_text {
+  background-color: transparent;
+  color: var(--notification_txt_color);
+  font: var(--notification_text_font_family);
+  margin: auto;
+  width: fit-content;
+}
+</style>
+</head>
+<body>
+	<div class='notification_container' id='notification_container'>
+		<div class='notification' id="notification">
+			{% if message %}
+				<p class='notification_text _centerH' id="notification_text">{{ message }}</p>
+			{% endif %}
+		</div>
+	</div>
+
+{% if message %}
+<script type='text/javascript'>
+
+function show_ntf() {
+  document.getElementById('notification_container').classList.add("active");
+}
+
+setTimeout(show_ntf, 1);
+
+</script>
+{% endif %}
+</body>
+</html>

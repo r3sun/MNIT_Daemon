@@ -3,6 +3,12 @@
 <title>MSG | MNIT</title>
 </head>
 <body>
-<p>{{ msg }}</p>
+	<div class='notification_container' id='notification_container'>
+		<div class='notification' id="notification">
+			{% if notification %}
+				<p class='notification_text _centerH' id="notification_text">{{ notification }}</p>
+			{% endif %}
+		</div>
+	</div>
 </body>
 </html>

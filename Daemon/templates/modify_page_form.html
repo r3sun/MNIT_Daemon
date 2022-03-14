@@ -5,28 +5,94 @@
 <style>
 :root {
   font-size: 16px;
-  --_font_family: Vardana, Sans-serif;
+  --_font_family_0: Vardana, Sans-serif;
+  --_font_family_1: Arial, Helvetica;
   --_font_size: 0.9rem;
-  --_color: rgb(80 150 255);
+  --_color: #1e90ff;
   --pg_nm_font_family: Arial, Helvetica;
   --pg_nm_font_size: 1.5625rem;
   --pg_url_font_family: ;
-}
 
+  --normal_font: 1rem var(--_font_family_0);
+  --normal_border: 0.01rem solid #ccc;
+  --normal_inverted_border: 0.01rem solid #ccc;
+  --invalid_data_border: 0.01rem solid #ff0000;;
+  --normal_padding: 0.3rem;
+  --scroll_bar_border: 0.15rem solid #ccc;
+
+  --header_bg_color: var(--_color);
+
+  --publish_button_bg_color: transparent;
+  --publish_button_color: #ffffff;
+  --publish_button_active_bg_color: #ccc;
+  --publish_button_active_color: var(--_color);
+  --publish_button_font: 1.2rem var(--_font_family_0);
+
+  --save_button_bg_color: transparent;
+  --save_button_color: #ffffff;
+  --save_button_font: 1.2rem var(--_font_family_0);
+  --save_button_active_bg_color: #ccc;
+  --save_button_active_color: var(--_color);
+
+  --main_bg_color: transparent;
+
+
+  --form_mk_array_height: 6rem;
+  --form_mk_array_font: 1rem var(--_font_family_1);
+
+  --form_content_height: 60vh;
+  --form_content_font: 1rem var(--_font_family_1);
+
+  --preview_button_bg_color: var(--_color);
+  --preview_button_color: #ffffff;
+  --preview_button_font: 1.2rem var(--_font_family_0);
+
+  --preview_container_bg_color: #ffffff;
+
+  --preview_header_bg_color: var(--_color);
+
+  --preview_exit_button_bg_color: var(--_color);
+  --preview_exit_button_color: #fff;
+  --preview_exit_button_font: 1.2rem var(--_font_family_0);
+
+  --form_file_upload_width: 30%;
+  --form_file_upload_margin: 0 0 0 1rem;
+
+  --upload_file_button_bg_color: var(--_color);
+  --upload_file_button_color: #ffffff;
+  --upload_file_button_font: 1.2rem var(--_font_family_0);
+
+  --uploaded_file_container_bg_color: transparent;
+  --uploaded_file_container_min_height: 10rem;
+
+  --file_snippet_bg_color: var(--_color);
+  --file_snippet_height: 5rem;
+  --file_snippet_width: 5rem;
+
+  --form_title_font: 2rem var(--_font_family_0);
+  --form_title_border: 0.2rem solid #999;
+
+  --form_select_font: 1.2rem var(--_font_family_0);
+
+  --page_url_font: 1.2rem "Courier New", monospace;
+}
+* {
+  box-sizing: border-box;
+}
 ::-webkit-scrollbar {
   width: 0.8rem;
 }
 ::-webkit-scrollbar-thumb {
   background-color: transparent;
-  border: 0.15rem solid #ff6969;
+  border: var(--scroll_bar_border);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #ff6969;
+  background-color: #ccc;
   border: 0.15rem solid transparent;
 }
 ::-webkit-scrollbar-thumb:active {
-  background-color: rgb(80 150 255);
-  border: 0.15rem solid #ffffff;
+  background-color: #ccc;
+  border: var(--scroll_bar_border);
 }
 ::-webkit-scrollbar-button {
   display: none;
@@ -42,6 +108,10 @@ body {
   display: flex;
   flex-direction: column;
 }
+._flex_wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
 ._left {
   margin-left: 0;
   margin-right: auto;
@@ -50,13 +120,22 @@ body {
   margin-left: auto;
   margin-right: 0;
 }
-._center_h {
-  margin-left: auto;
-  margin-right: auto;
+._centerV {
+  margin-top: auto!important;
+  margin-bottom: auto!important;
 }
-._center_v {
-  margin-top: auto;
-  margin-bottom: auto;
+._centerH {
+  margin-left: auto!important;
+  margin-right: auto!important;
+}
+
+._centerV_items {
+  display: flex;
+  align-items: center;
+}
+._centerH_items {
+  display: flex;
+  justify-content: center;
 }
 ._fit_content {
   height: fit-content;
@@ -64,323 +143,232 @@ body {
 }
 ._fill_available {
   width: -webkit-fill-available;
-  height: -webkit-fill-available;
 }
+._label {
+  font: var(--normal_font);
+}
+._container {
+  padding: 0.01rem 0.5rem;
+}
+._container::before , ._container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+._expand {
+    display: flex;
+}
+._collapse {
+    display: none;
+}
+._link {
+	color: #1e90ff;
+}
+._link:hover {
+	color: #ccc;
+}
+._not_link {
+    color: inherit;
+    text-decoration: none;
+}
+._not_link:hover {
+    color: inherit;
+}
+._not_link:active {
+    color: inherit;
+}
+
 header {
-    background-color: rgb(80 150 255);
+  background-color: var(--header_bg_color);
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
-._title, ._prvw_title {
-    font-size: 1.2rem;
-    font-family: var(--_font_family);
-    margin: 2rem;
-    text-transform: uppercase;
-    color: #ffffff;
+.title, .previww_title {
+  font-size: 1.2rem;
+  font-family: var(--_font_family_0);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  color: #ffffff;
+  width: fit-content;
 }
-._frm_submit_cntnr {
-    height: fit-content;
-    margin-top: auto;
-    margin-right: 2rem;
-    margin-bottom: auto;
-    margin-left: auto;
+.form_submit_cntnr {
+  height: fit-content;
 }
-._publish_btn {
-    background-color: transparent;
-    color: #ffffff;
-    padding: 0.3rem;
-    margin: 0 0 0.5rem 0;
-    font: 1.2rem Vardana, sans-serif;
-    text-transform: uppercase;
-    text-align: center;
-    cursor: pointer;
-    border: 0.01rem solid #ffffff;
+.update_button {
+  background-color: var(--publish_button_bg_color);
+  color: var(--publish_button_color);
+  padding: var(--normal_padding);
+  margin: 0 0 0.5rem 0;
+  font: var(--publish_button_font);
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  border: var(--normal_border);
 }
-._publish_btn:active {
-    background-color: rgb(24, 90, 189);
-    color: #ff6969;
-    border: 0.01rem solid #ff6969;
+.update_button:active {
+  background-color: var(--publish_button_active_bg_color);
+  color: var(--publish_button_active_color);
+  border: var(--normal_inverted_border);
 }
-._save_btn {
-    background-color: transparent;
-    color: #ffffff;
-    padding: 0.3rem;
-    margin: 0.5rem auto 0 auto;
-    width: auto;
-    font: 1.2rem Vardana, sans-serif;
-    text-transform: uppercase;
-    text-align: center;
-    cursor: pointer;
+.save_button {
+  background-color: var(--save_button_bg_color);
+  color: var(--save_button_color);
+  padding: var(--normal_padding);
+  margin: 0.5rem auto 0 auto;
+  width: auto;
+  font: var(--save_button_font);
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  border: var(--normal_border);
 }
-._save_btn:active {
-    background-color: #e7e7e7;
-    color: #000000;
+.save_button:active {
+  background-color: var(--save_button_active_bg_color);
+  color: var(--save_button_active_color);
 }
-._body {
-  margin: 3rem 2rem 0 2rem;
+.main {
+  background-color: var(--main_bg_color);
+  padding: 3rem 2rem 0 2rem;
 }
-._body._inactive {
+.main._inactive {
   height: 0;
   overflow: hidden;
 }
-._form_container {
-  width: fit-content;
-  height: 22rem;
-}
-._frm_cntnr {
-  width: 26.71875rem!important;
-  overflow: hidden;
-  margin-right: 2rem;
-}
-._frm_title_cntnr {
+.form_container {
+  width: 100%;
   height: fit-content;
-  width: fit-content;
-  margin: 0 0 3rem 0;
-  border-bottom: 0.17rem solid #000!important;
-}
-._frm_title {
-  height: 2rem;
-  width: 40rem;
-  border: 0;
-  outline: none;
-  font-size: 1.5rem;
-  font-family: Vardana, Sans-serif;
-}
-._frm_title:focus {
-  border: 0;
-  outline: none;
-}
-._frm_mk_array_cntnr {
-    width: fit-content;
-}
-._frm_mk_array_lbl {
-  font-size: 1rem;
-  font-family: Vardana, Sans-serif;
-  border-bottom: 0.17rem solid #000;
-  text-transform: uppercase;
-}
-._frm_mk_array {
-  height: 6rem;
-  width: 40rem;
-  border: 0;
-  margin: 0.5rem 0;
-  outline: none;
-  font-size: 1rem;
-  resize: none;
-  font-family: Vardana, Sans-serif;
-}
-._frm_mk_array_hidden {
-  height: 0!important;
-  width: 0!important;
-}
-._frm_mk_array:focus {
-    border: 0;
-    outline: none;
-}
-._frm_mk_array::-webkit-scrollbar {
-  width: 0.5rem;
-  cursor: pointer;
-}
-._frm_mk_array::-webkit-scrollbar-button {
-  display: none;
-}
-._frm_mk_array::-webkit-scrollbar-thumb {
-  background-color: transparent;
-  border: 0.01rem solid #ff6969;
-}
-#_frm_ttl_msg {
-  display: none;
-  background-color: transparent;
-  width: fit-content;
-  font: 0.9rem Arial;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  padding: .4rem;
-  z-index: 2;
-  box-shadow: 0.4rem 0.4rem 0.9rem #cccccc!important;
-  animation: warning_anm 1s infinite;
-}
-select {
-  height: 2.256rem;
-  width: 10rem;
-  border: 0.01rem solid #ccc;
-  border-radius: 0;
-  font-size: 1.2rem;
-  font-family: Vardana, Sans-serif;
-}
-select:focus {
-  border: 0.01rem solid #ccc;
-  outline: none;
-  border-radius: 0;
-}
-select option {
-  height: 2.256rem!important;
-  width: 10rem!important;
-  padding: 8px 16px!important;
-  line-height: 1.5rem!important;
-  margin: 1rem 0!important;
 }
 
-#_frm_subj_msg {
-  display: none;
-  background-color: transparent;
-  width: fit-content;
-  font: 0.9rem Arial;
-  margin-top: 1.2rem;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  padding: .4rem;
-  z-index: 2;
-  box-shadow: 0.4rem 0.4rem 0.9rem #cccccc!important;
-  animation: warning_anm 1s infinite;
-}
-#_frm_typ_msg {
-  display: none;
-  background-color: transparent;
-  width: fit-content;
-  font: 0.9rem Arial;
-  margin-top: 1.2rem;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  padding: .4rem;
-  z-index: 2;
-  box-shadow: 0.4rem 0.4rem 0.9rem #cccccc!important;
-  animation: warning_anm 1s infinite;
-}
-#_frm_cntnt_msg {
-  display: none;
-  background-color: transparent;
-  width: fit-content;
-  font: 0.9rem Arial;
-  margin-top: 0;
-  margin-bottom: 0.4rem;
-  margin-left: 0;
-  margin-right: 0;
-  padding: .4rem;
-  z-index: 2;
-  box-shadow: 0.4rem 0.4rem 0.9rem #cccccc!important;
-  animation: warning_anm 1s infinite;
-}
 
-@keyframes warning_anm {
-  0% {border: 0.1rem solid var(--_color);}
-  25% {border: 0.1rem solid #ff6969;}
-  50% {border: 0.1rem solid #69ffff}
-  100% {border: 0.1rem solid #cccccc}
+.form_container form {
+  width: 100%;
+  height: fit-content;
 }
-._frm_selc_lbl {
-  font-size: 1rem;
-  font-family: Vardana, Sans-serif;
-  text-transform: uppercase;
-}
-._frm_selct_sprtr select option {
-  font-size: 1.2rem;
-  font-family: Vardana, Sans-serif;
-}
-._page_url_cntnr {
-  font-size: 1.2rem;
-  font-family: Vardana, Sans-serif;
-  margin: 2rem 0;
-}
-._page_url {
-  font-size: 1.2rem;
-  font-family: Courier, Sans-serif;
-}
-._file_upld_cntnr {
-  width: 26.71875rem!important;
-  margin-left: auto;
-  margin-right: 0;
-  margin-top: 5rem;
-}
-._file_upld_file_p {
-  background-color: rgb(80 150 255);
-  color: #ffffff;
-  padding: 0.3rem;
-  margin: 0 0 0.5rem 0;
-  height: 1.364rem;
-  width: fit-content;
-  font: 1.2rem Vardana, sans-serif;
-  text-transform: uppercase;
-  text-align: center;
-  cursor: pointer;
-  border: 0.01rem solid #ffffff;
-}
-._file_upld_submit {
-  background-color: rgb(80 150 255);
-  color: #ffffff;
-  padding: 0.3rem;
-  margin: 0 0 0.5rem 0;
-  height: 1.364rem;
-  width: fit-content;
-  font: 1.2rem Vardana, sans-serif;
-  text-transform: uppercase;
-  text-align: center;
-  cursor: pointer;
-  border: 0.01rem solid #ffffff;
-}
-#_file_upld_file {
-  display: none;
-}
-._upldd_file_cntnr {
-  width: 26.71875rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2rem;
-  overflow: scroll;
-}
-._file_snippet {
-  background-color: rgb(80 150 255);
-  display: flex;
-  justify-content: center;
-  height: 5rem;
-  width: 5rem;
-  margin: 0.03rem;
-}
-._frm_content {
-  height: 60vw;
+.form_title {
+  height: fit-content;
   width: 100%;
   border: 0;
+  border-bottom: var(--form_title_border);
   outline: none;
-  font-size: 1.2rem;
-  font-family: Vardana, Sans-serif;
-    border-top: 0.17rem solid #000!important;
+  font: var(--form_title_font);
+  margin: 0.5rem 0;
 }
-._frm_content:focus {
-  border: 0;
+.form_title:focus {
   outline: none;
 }
-._frm_content::-webkit-scrollbar {
+
+
+.form_subject, .form_type {
+  height: fit-content;
+  width: 10rem;
+  border: var(--normal_border);
+  outline: none;
+  padding: 8px 16px!important;
+  font: var(--form_select_font);
+  margin: 0.5rem 0.5rem 0.5rem 0;
+}
+.form_subject:focus, .form_type:focus {
+  outline: none;
+}
+.form_subject option, .form_type option {
+  height: fit-content;
+  width: 100%!important;
+  padding: 8px 16px!important;
+  margin: 1rem 0!important;
+  font: var(--form_select_font);
+}
+
+.form_title.invalid, .form_subject.invalid, .form_type.invalid {
+  border: var(--invalid_data_border);
+}
+.page_url_cntnr {
+  margin: 2rem 0;
+}
+.page_url {
+  font: var(--page_url_font);
+}
+
+
+/*
+  form_content_container
+
+*/
+.form_content_container {
+  width: 70%;
+  margin: 0 1rem 0 0;
+}
+.form_mk_array {
+  height: var(--form_mk_array_height);
+  width: 100%;
+  border: var(--normal_border);
+  margin: 0;
+  outline: none;
+  font: var(--form_mk_array_font);;
+  resize: none;
+  padding: var(--normal_padding);
+}
+.form_mk_array:focus {
+  outline: none;
+}
+.form_mk_array::-webkit-scrollbar {
   width: 0.5rem;
+  cursor: pointer;
 }
-._frm_content::-webkit-scrollbar-thumb {
-  background-color: transparent;
-  border: 0.01rem solid #ff6969;
-}
-._frm_content::-webkit-scrollbar-button {
+.form_mk_array::-webkit-scrollbar-button {
   display: none;
 }
-._prvw_btn {
-  background-color: rgb(80 150 255);
-  color: #ffffff;
-  padding: 0.3rem;
+.form_mk_array::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border: var(--scroll_bar_border);
+}
+
+
+.form_content {
+  height: var(--form_content_height);
+  width: 100%;
+  border: var(--normal_border);
+  outline: none;
+  font: var(--form_content_font);
+  margin: 0.5rem 0;
+  padding: var(--normal_padding);
+  resize: none;
+}
+.form_content:focus {
+  outline: none;
+}
+.form_content::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.form_content::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border: var(--scroll_bar_border);
+}
+.form_content::-webkit-scrollbar-button {
+  display: none;
+}
+.form_content.invalid {
+  border: var(--invalid_data_border);
+}
+.preview_button {
+  background-color: var(--preview_button_bg_color);
+  color: var(--preview_button_color);
+  padding: var(--normal_padding);
   margin: 0 0 0.5rem 0;
-  height: 1.364rem;
+  height: fit-content;
   width: -webkit-fill-available;
-  font: 1.2rem Vardana, sans-serif;
+  font: var(--preview_button_font);
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
-  border: 0.01rem solid #ffffff;
 }
 
-._prvw_cntnr {
+.preview_container {
   height: 0;
   overflow: hidden;
 }
-._prvw_cntnr._active {
-  background-color: #fff;
+.preview_container._active {
+  background-color: var(--preview_container_bg_color);
   position: absolute;
   top: 0;
   left: 0;
@@ -390,22 +378,74 @@ select option {
   width: 100vw;
   overflow: hidden;
 }
-._prvw_heading {
-  background-color: var(--_color);
+.preview_header {
+  background-color: var(--preview_header_bg_color);
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
-._prvw_ext_btn {
-  background-color: rgb(80 150 255);
-  color: #ffffff;
-  padding: 0.3rem;
-  margin: auto auto auto 0.5rem;
-  height: 1.364rem;
-  width: 4rem;
-  font: 1.2rem Vardana, sans-serif;
+.preview_exit_button {
+  background-color: var(--preview_exit_button_bg_color);
+  color: var(--preview_exit_button_color);
+  padding: var(--normal_padding);
+  height: fit-content;
+  width: fit-content;
+  font: var(--preview_exit_button_font);
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
-  border: 0.01rem solid #ffffff;
+  border: var(--normal_border);
 }
+
+/*
+  form_file_upload
+
+*/
+
+.form_file_upload {
+  width: var(--form_file_upload_width);
+  margin: var(--form_file_upload_margin);
+}
+
+.file_upload_container {
+  width: 100%;
+  margin: 0;
+}
+.file_upload_container form {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 0 0.5rem 0;
+}
+.upload_file_button {
+  background-color: var(--upload_file_button_bg_color);
+  color: var(--upload_file_button_color);
+  padding: var(--normal_padding);
+  margin: 0;
+  width: -webkit-fill-available;
+  font: var(--upload_file_button_font);
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+}
+#_file_upld_file {
+  display: none;
+}
+.uploaded_file_container {
+  background-color: var(--uploaded_file_container_bg_color);
+  width: 100%;
+  height: fit-content;
+  min-height: var(--uploaded_file_container_min_height);
+  padding: var(--normal_padding);
+  overflow: scroll;
+  border: var(--normal_border);
+}
+.file_snippet {
+  background-color: var(--file_snippet_bg_color);
+  height: var(--file_snippet_height);
+  width: var(--file_snippet_width);
+  margin: 0.2rem;
+  overflow: hidden;
+}
+
 ._file_snippet_top {
   display: flex;
   justify-content: center;
@@ -425,6 +465,7 @@ select option {
   position: relative;
   padding: 0.9rem 0.3rem;
   width: 5rem;
+  height: 5rem;
   opacity: 0;
 }
 ._upldd_file_nm:hover + ._fl_btns {
@@ -436,6 +477,8 @@ select option {
 ._upldd_file_nm {
   z-index: 0;
   position: absolute;
+  width: 5rem;
+  overflow: hidden;
 }
 ._upldd_img_file {
   height: 5rem;
@@ -468,173 +511,152 @@ select option {
 <body>
 <header>
   <div class='_flex_row'>
-    <p class='_title'>Modify Page</p>
+    <p class='title _left'>Modify Page</p>
 
-    <div class='_frm_submit_cntnr'>
-      <p class='_publish_btn' onclick='_updt()'>Update</p>
+    <div class='form_submit_cntnr _centerV'>
+      <p class='update_button' onclick='_updt()'>Update</p>
     </div>
   </div>
 </header>
-<p id='pg'></p>
-<div class='_body' id='_body'>
-  <div class='_flex_column'>
-    <div class='_flex_row _form_container'>
-      <div class='_frm_cntnr'>
-        <form action='{% url 'mdfy_new_page' %}' id='_mdfy_pg_frm' method='POST'>
-          {% csrf_token %}
-          <div class='_frm_elmnts _flex_column'>
-            <div class='_flex_column _frm_title_cntnr'>
-              <p id='_frm_ttl_msg' class='_frm_ttl_msg'>This field is required</p>
-              <input type='hidden' name='_ititle' value='{{ title }}'/>
-              <input type='text' name='_title' class='_frm_title' id='_frm_title' placeholder='Title of the page is...' required value='{{ title }}'/>
-            </div>
-            <div class='_flex_row _frm_selc_cntnr'>
-              <div class='_frm_selct_sprtr _left'>
-                <input type='hidden' name='_isubj' value='{{ subj }}'/>
-                <lable class='_frm_selc_lbl' for='_frm_mc'>Subject:</lable>
-                <div class='_frm_subj-cumiz'>
-                  <select name='_subj' id='_frm_subj' required onchange='gen_path()'>
-                    <option value=''>null</option>
-                    <option value='math'>Math</option>
-                    <option value='physics'>Physics</option>
-                    <option value='chemistry'>Chemistry</option>
-                    <option value='unix'>Unix</option>
-                    <option value='windows'>Windows</option>
-                    <option value='c'>C</option>
-                  </select>
-                </div>
-                <p id='_frm_subj_msg'>This field is required</p>
-              </div>
-              <div class='_frm_selct_sprtr _right'>
-                <input type='hidden' name='_itype' value='{{ typ }}'/>
-                <lable class='_frm_selc_lbl' for='_frm_mc'>Type:</lable>
-                <div class='_frm_type-cumiz'>
-                  <select name='_type' id='_frm_type' required onchange='gen_path()'>
-                    <option value=''>null</option>
-                    <option value='how'>How</option>
-                    <option value='what'>What</option>
-                    <option value='why'>Why</option>
-                  </select>
-                </div>
-                <p id='_frm_typ_msg'>This field is required</p>
-              </div>
-            </div>
-          </div>
-        </form>
+
+<div class='main' id='main'>
+  <div class='_flex_row form_container'>
+    <form action='{% url 'mdfy_new_page' %}' id='_modify_page_form' method='POST'>
+      {% csrf_token %}
+      <div class='_form_elmnts _flex_column'>
+        <input type='hidden' name='_ititle' value='{{ title }}'/>
+        <input type='text' name='_title' class='form_title' id='form_title' placeholder='Title of the page is...' required value='{{ title }}' onkeypress='ttl_updt()' />
+        <div class='_flex_row'>
+          <input type='hidden' name='_isubj' value='{{ subj }}'/>
+          <select name='_subj' id='form_subject' class="form_subject" required onchange='subj_updt()'>
+            <option value=''>Subject</option>
+            <option value='math'>Math</option>
+            <option value='physics'>Physics</option>
+            <option value='chemistry'>Chemistry</option>
+            <option value='unix'>Unix</option>
+            <option value='windows'>Windows</option>
+            <option value='c'>C</option>
+          </select>
+
+          <input type='hidden' name='_itype' value='{{ typ }}'/>
+          <select name="_type" id="form_type" class="form_type" required onchange="typ_updt()">
+            <option value=''>Type</option>
+            <option value='how'>How</option>
+            <option value='what'>What</option>
+            <option value='why'>Why</option>
+          </select>
+        </div>
       </div>
-      <div class='_file_upld_cntnr _flex_column'>
-        <form action="{% url 'upldFile' %}" id='_upld_file_frm' method="post" enctype="multipart/form-data">
+    </form>
+  </div>
+
+  <p class='page_url_cntnr'><span class="_label">URL&nbsp;:&nbsp;&nbsp;</span><span class='page_url' id='page_url'></span></p>
+
+  <div class="_flex_row _fill_available">
+    <div class="_container form_content_container">
+      <input type="hidden" name='_imk_array' class='_frm_mk_array_hidden' id='_frm_mk_array_hidden' value="{{ mk_array }}"/>
+      <textarea form='_crt_pg_form' name='_mk_array' spellcheck="false" data-gramm="false" placeholder='Meta keywords...' class='form_mk_array' id='form_mk_array'>{{ mk_array }}</textarea>
+
+      <textarea name='_cntnt' spellcheck="false" data-gramm="false" class='form_content _fill_available' id='form_content' form='_crt_pg_form' placeholder='Content of the page is...'>{{ content }}</textarea>
+      <p class='preview_button' onclick='preview()'>preview</p>
+    </div>
+
+    <div class="_container form_file_upload">
+      <div class='file_upload_container _flex_column'>
+        <form action="{% url 'upldFile' %}" id='_upld_file_form' method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <input id='_file_upld_title' type='hidden' name='_title'/>
           <input id='_file_upld_subj' type='hidden' name='_subj'/>
           <input id='_file_upld_type' type='hidden' name='_type'/>
-          <input type='file' name='_files' multiple='' required='' id='_file_upld_file' onchange='_upld_file_click()'>
-          <p class='_file_upld_submit' onclick='_slct_file_mnu()'>Upload File</p>
+          <input type='file' name='_files' multiple='' required='' id='_file_upld_file' onchange='_upld_file()'>
+          <p class='upload_file_button' onclick='_slct_file_mnu()'>Upload File</p>
         </form>
-        <div class='_upldd_file_cntnr _flex_row' id='_upldd_file_cntnr'>
-    
+        <p class="_label">Uploaded Files:</p>
+        <div class='uploaded_file_container _flex_row _flex_wrap' id='uploaded_file_container'>
+
         </div>
       </div>
     </div>
-    <p class='_page_url_cntnr'><span>URL&nbsp;:&nbsp;&nbsp;<span class='_page_url' id='_page_url'></span></p>
-  </div>
-
-  <div class='_frm_mk_array_cntnr _flex_column'>
-    <textarea form='_mdfy_pg_frm' name='_imk_array' class='_frm_mk_array_hidden' id='_frm_mk_array_hidden'>{{ mk_array }}</textarea>
-    <lable for='_frm_mk_array' class='_frm_mk_array_lbl'>Meta Keywords:</lable>
-    <textarea form='_mdfy_pg_frm' name='_mk_array' placeholder='Meta keywords...' class='_frm_mk_array' id='_frm_mk_array'>{{ mk_array }}</textarea>
-  </div>
-
-  <div class='_flex_column _frm_txara_cntnr'>
-    <p id='_frm_cntnt_msg'>This field is required</p>
-    <textarea name='_cntnt' class='_frm_content' id='_frm_content' form='_mdfy_pg_frm' placeholder='Content of the page is...'>{{ content }}</textarea>
-    <p class='_prvw_btn' onclick='preview()'>preview</p>
   </div>
 
 </div>
 
 <script>
 function _slct_file_mnu() {
-  set_f_u_d();
-  gen_path();
-  document.getElementById('_file_upld_file').click();
-}
-function set_f_u_d() {
-  ft = document.getElementById('_file_upld_title');
-  fs = document.getElementById('_file_upld_subj');
-  ftyp = document.getElementById('_file_upld_type');
-  ttl = document.getElementById('_frm_title').value;
-  subj = document.getElementById('_frm_subj').value;
-  typ = document.getElementById('_frm_type').value;
-  if (chk_frm()) {
-    ft.value = ttl;
-    fs.value = subj;
-    ftyp.value = typ;
+  var ttl, subj, typ;
+  ttl = document.getElementById('form_title');
+  subj = document.getElementById('form_subject');
+  typ = document.getElementById('form_type');
+  if (ttl.value.length === 0) {
+    ttl.classList.add("invalid");
+  } else if (subj.value.length === 0) {
+    subj.classList.add("invalid");
+  } else if (typ.value.length === 0) {
+    typ.classList.add("invalid");
+  } else {
+    document.getElementById('_file_upld_file').click();
   }
 }
 function gen_path() {
-  var _title = document.getElementById('_frm_title').value;
+  var _title = document.getElementById('form_title').value;
   while (_title.includes(" ")) {
     _title = _title.replace(" ", "_");
   }
-  var _subj = document.getElementById('_frm_subj').value;
-  var _type = document.getElementById('_frm_type').value;
-  document.getElementById('_page_url').innerHTML = _subj + '/' + _type + '/' +_title;
+  var _subj = document.getElementById('form_subject').value;
+  var _type = document.getElementById('form_type').value;
+  document.getElementById('page_url').innerHTML = _subj + '/' + _type + '/' +_title;
 }
 
-document.getElementById('_frm_title').addEventListener("change", function() {
-  gen_path();
+function ttl_updt() {
   var ttl;
-  ttl = document.getElementById('_frm_title').value;
-  document.getElementById('_file_upld_title').value = ttl;
-  document.getElementById('_frm_ttl_msg').style.display = "none";
-});
-
-document.getElementById('_frm_content').addEventListener("keypress", function() {
-  gen_path();
-  document.getElementById('_frm_cntnt_msg').style.display = "none";
-});
+  ttl = document.getElementById('form_title');
+  if (ttl.value.length > 0) {
+    ttl.classList.remove("invalid");
+    gen_path();
+  } else {
+    ttl.classList.add("invalid");
+  }
+}
 
 function subj_updt() {
-  gen_path();
   var subj;
-  subj = document.getElementById('_frm_subj').value;
-  document.getElementById('_file_upld_subj').value = subj;
-  document.getElementById('_frm_subj_msg').style.display = "none";
+  subj = document.getElementById('form_subject');
+  if (subj.value.length > 0) {
+    subj.classList.remove("invalid");
+    document.getElementById('_file_upld_subj').value = subj.value;
+    gen_path()
+  } else {
+    subj.classList.add("invalid");
+  }
 }
 
 function typ_updt() {
-  gen_path();
   var typ;
-  typ = document.getElementById('_frm_type').value;
-  document.getElementById('_file_upld_type').value = typ;
-  document.getElementById('_frm_typ_msg').style.display = "none";
-}
-function chk_frm() {
-  var ttl, subj, typ, cntnt, ttlmsg, subjmsg, typmsg, cntntmsg;
-  ttl = document.getElementById('_frm_title').value;
-  subj = document.getElementById('_frm_subj').value;
-  typ = document.getElementById('_frm_type').value;
-  cntnt = document.getElementById('_frm_content').value;
-  ttlmsg = document.getElementById('_frm_ttl_msg');
-  subjmsg = document.getElementById('_frm_subj_msg');
-  typmsg = document.getElementById('_frm_typ_msg');
-  cntntmsg = document.getElementById('_frm_cntnt_msg');
-  if (ttl.length === 0) {
-    ttlmsg.style.display = "block";
-  } else if (subj.length === 0) {
-    subjmsg.style.display = "block";
-  } else if (typ.length === 0) {
-    typmsg.style.display = "block";
-  } else if (cntnt.length === 0) {
-    cntntmsg.style.display = "block";
+  typ = document.getElementById('form_type');
+  if (typ.value.length > 0) {
+    typ.classList.remove("invalid");
+    document.getElementById('_file_upld_type').value = typ.value;
+    gen_path()
   } else {
-    return 1;
+    typ.classList.add("invalid");
   }
 }
 function _updt() {
-  if (chk_frm()) {
-    document.getElementById('_mdfy_pg_frm').submit();
+  var ttl, subj, typ, cntnt;
+  ttl = document.getElementById('form_title');
+  subj = document.getElementById('form_subject');
+  typ = document.getElementById('form_type');
+  cntnt = document.getElementById('form_content');
+  if (ttl.value.length === 0) {
+    ttl.classList.add("invalid");
+  } else if (subj.value.length === 0) {
+    subj.classList.add("invalid");
+  } else if (typ.value.length === 0) {
+    typ.classList.add("invalid");
+  } else if (cntnt.value.length === 0) {
+    cntnt.classList.add("invalid");
+  } else {
+    document.getElementById('_modify_page_form').submit();
   }
 }
 
@@ -645,13 +667,13 @@ function _upld_file_click() {
 
 function _upld_file() {
   var xhttp = new XMLHttpRequest();
-  var form = new FormData(document.getElementById('_upld_file_frm'));
+  var form = new FormData(document.getElementById('_upld_file_form'));
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       f_f_pnl(this.responseText);
     }
   };
-  var act = document.getElementById('_upld_file_frm').action;
+  var act = document.getElementById('_upld_file_form').action;
   xhttp.open("POST", act, true);
   xhttp.send(form);
 }
@@ -660,21 +682,21 @@ function f_f_pnl(data) {
   var f_d = JSON.parse(d)
   if(f_d) {
     var i, doc, htmldt;
-    doc = document.getElementById('_upldd_file_cntnr');
+    doc = document.getElementById('uploaded_file_container');
     for(i = 0; i < f_d.length; i++) {
       var f_data = f_d[i];
       if(f_data.name && f_data.url && f_data.type) {
         if(f_data.type.includes("image")) {
-          htmldt = "<div class='_file_snippet'><div class='_file_snippet_top _fill_available'><img class='_upldd_img_file' src='/static" + f_data.url + "'/><div class='_fl_btns _fill_available'><p class='_fit_content _center_v _center_h' onclick='cpy_file_link(this)'><svg aria-hidden='true' viewBox='0 0 16 16' version='1.1' data-view-component='true' height='20' width='20'><path fill-rule='evenodd' d='M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z'></path></svg></p><input id='_file_link' type='text' value='" + f_data.url + "' /><p class='_del_file_btn'><i class=\"material-icons\" style='font-size:1rem;'>&#xe5cd;</i></p></div></div></div>";
+          htmldt = "<div class='file_snippet'><div class='_file_snippet_top _fill_available'><img class='_upldd_img_file' src='/static" + f_data.url + "'/><div class='_fl_btns _fill_available'><p class='_fit_content _centerV _centerH' onclick='cpy_file_link(this)'><svg aria-hidden='true' viewBox='0 0 16 16' version='1.1' data-view-component='true' height='20' width='20'><path fill-rule='evenodd' d='M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z'></path></svg></p><input id='_file_link' type='text' value='" + f_data.url + "' /><p class='_del_file_btn'><i class=\"material-icons\" style='font-size:1rem;'>&#xe5cd;</i></p></div></div></div>";
         } else if(f_data.type.includes("text") || f_data.type.includes("html") || f_data.type.includes("css") || f_data.type.includes("javascript") ||f_data.type.includes("python")) {
-          htmldt = "<div class='_file_snippet'><div class='_file_snippet_top _fill_available'><p class='_upldd_file_nm _fit_content'>" + f_data.name + "</p><div class='_fl_btns _fill_available'><p class='_fit_content _center_v _center_h' onclick='cpy_file_link(this)'><svg aria-hidden='true' viewBox='0 0 16 16' version='1.1' data-view-component='true' height='20' width='20'><path fill-rule='evenodd' d='M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z'></path></svg></p><input id='_file_link' type='text' value='" + f_data.url + "' /><p class='_del_file_btn'><i class=\"material-icons\" style='font-size:1rem;'>&#xe5cd;</i></p></div></div></div>";
+          htmldt = "<div class='file_snippet'><div class='_file_snippet_top _fill_available'><p class='_upldd_file_nm _fit_content'>" + f_data.name + "</p><div class='_fl_btns _fill_available'><p class='_fit_content _centerV _centerH' onclick='cpy_file_link(this)'><svg aria-hidden='true' viewBox='0 0 16 16' version='1.1' data-view-component='true' height='20' width='20'><path fill-rule='evenodd' d='M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z'></path></svg></p><input id='_file_link' type='text' value='" + f_data.url + "' /><p class='_del_file_btn'><i class=\"material-icons\" style='font-size:1rem;'>&#xe5cd;</i></p></div></div></div>";
         } else {
           htmldt = "<p>null</p>";
         }
-      } else if(f_data.warning && f_data.name) {
-        htmldt = "<p class='_warning'>" + f_data.name + f_data.warning + "</p>";
-      }
       doc.innerHTML += htmldt;
+      } else if(f_data.warning && f_data.name) {
+        alert(f_data.name + " " + f_data.warning);
+      }
     }
   }
 }
@@ -685,8 +707,8 @@ function cpy_file_link(el) {
   document.execCommand("copy");
 }
 
-setSelct('_frm_subj', '{{ subj }}');
-setSelct('_frm_type', '{{ typ }}');
+setSelct('form_subject', '{{ subj }}');
+setSelct('form_type', '{{ typ }}');
 function setSelct(elid, val) {
   var el = document.getElementById(elid);
   var opts = el.options;
@@ -701,26 +723,27 @@ function setSelct(elid, val) {
 }
 
 function preview() {
-  var cntnt = document.getElementById('_frm_content').value;
-  document.getElementById('_prvw').innerHTML = cntnt;
-  document.getElementById('_body').className = '_body _inactive'
-  document.getElementById('_prvw_cntnr').className = '_prvw_cntnr _active';
+  var cntnt = document.getElementById('form_content').value;
+  document.getElementById('preview').innerHTML = cntnt;
+  document.getElementById('main').className = 'main _inactive'
+  document.getElementById('preview_container').className = 'preview_container _active';
+  window.scroll(0, 0);
 }
 function ext_preview() {
-  var cntnt = document.getElementById('_frm_content').value;
-  document.getElementById('_prvw').innerHTML = 'null';
-  document.getElementById('_body').className = '_body'
-  document.getElementById('_prvw_cntnr').className = '_prvw_cntnr';
+  var cntnt = document.getElementById('form_content').value;
+  document.getElementById('preview').innerHTML = 'null';
+  document.getElementById('main').className = 'main'
+  document.getElementById('preview_container').className = 'preview_container';
 }
 </script>
 
-  <div class='_prvw_cntnr' id='_prvw_cntnr'>
-    <div class='_prvw_heading _flex_row'>
-      <p class='_prvw_ext_btn' onclick='ext_preview()'>Close</p>
-      <p class='_prvw_title'>Preview of your content</p>
-    </div>
-    <div class='_prvw' id='_prvw'>
-    </div>
+<div class='preview_container' id='preview_container'>
+  <div class='preview_header _flex_row'>
+    <p class='previww_title _left'>Preview of your content</p>
+    <p class='preview_exit_button _right' onclick='ext_preview()'>Close</p>
   </div>
+  <div class='preview' id='preview'>
+  </div>
+</div>
 </body>
 </html>

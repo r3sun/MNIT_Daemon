@@ -1,23 +1,50 @@
 :root {
   font-size: 16px;
-  --_font_family: Vardana, sans-serif;
-  --_font_size: 1rem;
-  --bg_color: rgb(80 150 255);
-  --nav_bgcolor: #f1f1f1;
-  --pg_nm_font_family: Vardana, sans-serif;
-  --pg_nm_font_size: 1.2rem;
-  --pg_url_font_family: "Couriar New";
-  --ntf_bg_color: rgb(80 150 255);
-  --ntf_txt_color: #ffffff;
-  --ntf_font_size: 2rem;
+  --_font_family_0: Vardana, Sans-serif;
+  --_font_family_1: Arial, Helvetica;
+  --_font_size: 0.9rem;
+  --_color: #1e90ff;
+  --_inverted_color: #ff0000;
+
+  --normal_border: 0.01rem solid #ccc;
+  --normal_inverted_border: 0.01rem solid #ccc;
+  --invalid_data_border: 0.01rem solid var(--_inverted_color);
+  --normal_padding: 0.3rem;
+  --normal_margin: 1rem;
+  --normal_font: 1rem var(--_font_family_0);
+  --scroll_bar_border: 0.15rem solid #ccc;
+  --button_bg_color: var(--_color);
+  --button_text_color: #ffffff;
+
+  --header_bg_color: var(--_color);
+  --header_height: 3rem;
+
+  --title_color: #ffffff;
+  --title_font: 2rem var(--_font_family_0);
+
+  --user_menu_bg_color: ;
+
+  --nav_bg_color: #1e1e1e;
+  --nav_element_bg_color: transparent;
+  --nav_element_color: #fff;
+  --nav_element_font: 1rem var(--_font_family_0);
+  --nav_element_padding: 8px 16px;
+  --nav_element_hover_bg_color: #3d3d3d;
+
+  --notification_container_active_height: 10rem;
+
+  --user_menu_snippet_height: 3rem;
+  --user_menu_snippet_height: 3rem;
+  --user_menu_bg_color: #f1f1f1;
+  --user_menu_width: 10rem;
+  --user_profile_image_height: 2rem;
+  --user_profile_image_width: 2rem;
+
+  --main_bg_color: #fff;
 }
 
 *, *:before, *:after {
   box-sizing: border-box!important;
-}
-p {
-  margin-top: 0!important;
-  margin-bottom: 0!important;
 }
 ._centerV {
   margin-top: auto!important;
@@ -44,18 +71,35 @@ p {
   display: flex;
   flex-direction: row;
 }
+
+._flex_wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+._flex_no-wrap {
+    display: flex;
+    flex-wrap: no-wrap;
+}
 ._fill_available {
   width: -webkit-fill-available!important;
 }
-._left {
-  margin-left: 0;
-  margin-right: auto;
-  float: left;
+._top {
+  margin-top: 0;
+  margin-bottom: auto;
 }
 ._right {
   margin-left: auto;
   margin-right: 0;
   float: right;
+}
+._bottom {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+._left {
+  margin-left: 0;
+  margin-right: auto;
+  float: left;
 }
 ._container {
   padding: 0.01rem 0.5rem;
@@ -65,112 +109,140 @@ p {
   display: block;
   clear: both;
 }
-._no-wrap {
-    display: flex;
-    flex-wrap: no-wrap;
-}
 ._expand {
     display: flex;
 }
 ._collapse {
     display: none;
 }
+._link {
+	color: #1e90ff;
+}
+._link:hover {
+	color: #ccc;
+}
+._not_link {
+    color: inherit;
+    text-decoration: none;
+}
+._not_link:hover {
+    color: inherit;
+}
+._not_link:active {
+    color: inherit;
+}
+._label {
+  font: var(--normal_font);
+}
+._button {
+  background-color: var(--button_bg_color);
+  color: var(--button_text_color);
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
 body {
   margin: 0!important;
 }
 header {
-  background-color: var(--bg_color);
-  height: 5.3625rem;
+  background-color: var(--header_bg_color);
+  height: var(--header_height);
   overflow: visible;
-  padding: 0;
-  margin: 0 0 2rem 0;
+  padding: 0 1rem;
+  margin: 0;
 }
 .title_container {
-  height: 3.01rem;
+  height: fit-content;
   width: fit-content;
 }
 header .title {
-  margin: 0 auto 0 2rem;
-  padding: 0.369rem;
   height: fit-content;
   width: fit-content;
   text-align: center;
-  font-family: var(--_font_family);
-  font-size: 2rem;
+  font: var(--title_font);
   text-transform: uppercase;
-  color:#fff;
+  color: var(--title_color);
 }
 .user_menu_container {
-  height: fit-content;
-  margin: 0 2rem 0 auto;
+  height: var(--header_height);
+  width: fit-content;
   overflow: visible;
+  z-index: 4;
 }
 .user_menu {
-  background-color: #ffffff;
+  background-color: var(--user_menu_bg_color);
   height: 0;
   overflow: hidden;
-  width: fit-content;
+  width: var(--user_menu_width);
+  margin-top: var(--user_menu_snippet_height);
+  margin-right: 0;
+  margin-left: auto;
   position: relative;
-  z-index: 2;
   transition: height 0.3s;
+  box-shadow: 0 0.25rem 0.5rem 0 #00000033, 0 0.375rem 1.25rem 0 #00000030;
+  box-sizing: border-box;
 }
 .user_menu.active {
+  padding: var(--normal_padding);
   height: 10rem;
   transition: height 0.3s;
 }
-.profile_image {
-  height: 3rem;
-  width: 3rem;
+.user_menu_snippet {
+  height: var(--user_menu_snippet_height)!important;
+  width: var(--user_menu_snippet_width)!important;
+  overflow: hidden;
+}
+.user_profile_image {
+  height: var(--user_profile_image_height);
+  width: var(--user_profile_image_width);
   border-radius: 50%;
   cursor: pointer;
 }
 nav {
-  background-color: var(--nav_bgcolor);
+  background-color: var(--nav_bg_color);
   margin: auto 0 0 0;
 }
 nav a {
   display: block;
-  background-color: #ff6969;
-  padding: 0.5rem 1rem;
-  color: #ffffff;
+  background-color: var(--nav_element_bg_color);
+  padding: var(--nav_element_padding);
+  color: var(--nav_element_color);
   margin: 0;
-  font: 1rem Arial, Helvetica;
+  font: var(--nav_element_font);
   border: 0.01rem solid transparent;
   text-decoration: none;
 }
-nav a:active {
-  border-top: 0.01rem solid transparent;
-  border-right: 0.01rem solid #ffffff;
-  border-bottom: 0.01rem solid transparent;
-  border-left: 0.01rem solid #ffffff;
+nav a:hover {
+  background-color: var(--nav_element_hover_bg_color);
   text-decoration: none;
 }
 .notification_container {
   height: 0;
   overflow: hidden;
-  transition: height 0.3s 0.6s;
+  transition: height 0.3s;
 }
 .notification_container.active {
-  height: 10rem;
+  height: var(--notification_container_active_height);
   overflow: hidden;
   transition: height 0.3s 0.6s;
 }
 .notification {
-  background-color: var(--ntf_bg_color);
+  background-color: var(--notification_container_bg_color);
   margin: 0 auto 2rem auto;
-  padding: 2rem;
+  padding: var(--normal_padding);
   width: -webkit-fill-available;
   height: 4rem;
-  box-shadow: 0 0.4rem 1rem #ccc!important;
+  box-shadow: var(--notification_container_box_shadow);
 }
 .notification_text {
   background-color: transparent;
-  color: var(--ntf_txt_color);
-  font-family: var(--font_family);
-  font-size: var(--ntf_font_size);
+  color: var(--notification_txt_color);
+  font: var(--notification_text_font_family);
   margin: auto;
   width: fit-content;
 }
-.cntnt_body {
-  background-color: #ffffff;
+.main {
+  background-color: var(--main_bg_color);
+  margin: 0 var(--normal_margin);
 }

@@ -6,23 +6,74 @@
 <style>
 :root {
   font-size: 16px;
-  --_font_family_1: Vardana, Sans-serif;
+  --_font_family_0: Vardana, Sans-serif;
+  --_font_family_1: Arial, Helvetica;
   --_font_size: 0.9rem;
-  --_color: rgb(80 150 255);
+  --_color: #1e90ff;
   --pg_nm_font_family: Arial, Helvetica;
   --pg_nm_font_size: 1.5625rem;
   --pg_url_font_family: ;
 
-  --normal_font_size: 1rem;
-  --normal_font_family: var(--_font_family_1);
-  --normal_font: var(--normal_font_size) var(--normal_font_family);
+  --normal_font: 1rem var(--_font_family_0);
   --normal_border: 0.01rem solid #ccc;
+  --normal_inverted_border: 0.01rem solid #ccc;
+  --invalid_data_border: 0.01rem solid #ff0000;;
+  --normal_padding: 0.3rem;
+  --scroll_bar_border: 0.15rem solid #ccc;
 
-  --form_content_font_family: Vardana, Sans-serif;
-  --form_title_font: 2rem var(--_font_family_1);
+  --header_bg_color: var(--_color);
+
+  --publish_button_bg_color: transparent;
+  --publish_button_color: #ffffff;
+  --publish_button_active_bg_color: #ccc;
+  --publish_button_active_color: var(--_color);
+  --publish_button_font: 1.2rem var(--_font_family_0);
+
+  --save_button_bg_color: transparent;
+  --save_button_color: #ffffff;
+  --save_button_font: 1.2rem var(--_font_family_0);
+  --save_button_active_bg_color: #ccc;
+  --save_button_active_color: var(--_color);
+
+  --main_bg_color: transparent;
+
+
+  --form_mk_array_height: 6rem;
+  --form_mk_array_font: 1rem var(--_font_family_1);
+
+  --form_content_height: 60vh;
+  --form_content_font: 1rem var(--_font_family_1);
+
+  --preview_button_bg_color: var(--_color);
+  --preview_button_color: #ffffff;
+  --preview_button_font: 1.2rem var(--_font_family_0);
+
+  --preview_container_bg_color: #ffffff;
+
+  --preview_header_bg_color: var(--_color);
+
+  --preview_exit_button_bg_color: var(--_color);
+  --preview_exit_button_color: #fff;
+  --preview_exit_button_font: 1.2rem var(--_font_family_0);
+
+  --form_file_upload_width: 30%;
+  --form_file_upload_margin: 0 0 0 1rem;
+
+  --upload_file_button_bg_color: var(--_color);
+  --upload_file_button_color: #ffffff;
+  --upload_file_button_font: 1.2rem var(--_font_family_0);
+
+  --uploaded_file_container_bg_color: transparent;
+  --uploaded_file_container_min_height: 10rem;
+
+  --file_snippet_bg_color: var(--_color);
+  --file_snippet_height: 5rem;
+  --file_snippet_width: 5rem;
+
+  --form_title_font: 2rem var(--_font_family_0);
   --form_title_border: 0.2rem solid #999;
 
-  --form_select_font: 1.2rem var(--_font_family_1);
+  --form_select_font: 1.2rem var(--_font_family_0);
 
   --page_url_font: 1.2rem "Courier New", monospace;
 }
@@ -34,7 +85,7 @@
 }
 ::-webkit-scrollbar-thumb {
   background-color: transparent;
-  border: 0.15rem solid #ccc;
+  border: var(--scroll_bar_border);
 }
 ::-webkit-scrollbar-thumb:hover {
   background-color: #ccc;
@@ -42,7 +93,7 @@
 }
 ::-webkit-scrollbar-thumb:active {
   background-color: #ccc;
-  border: 0.15rem solid #ccc;
+  border: var(--scroll_bar_border);
 }
 ::-webkit-scrollbar-button {
   display: none;
@@ -58,6 +109,10 @@ body {
   display: flex;
   flex-direction: column;
 }
+._flex_wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
 ._left {
   margin-left: 0;
   margin-right: auto;
@@ -66,13 +121,22 @@ body {
   margin-left: auto;
   margin-right: 0;
 }
-._center_h {
-  margin-left: auto;
-  margin-right: auto;
+._centerV {
+  margin-top: auto!important;
+  margin-bottom: auto!important;
 }
-._center_v {
-  margin-top: auto;
-  margin-bottom: auto;
+._centerH {
+  margin-left: auto!important;
+  margin-right: auto!important;
+}
+
+._centerV_items {
+  display: flex;
+  align-items: center;
+}
+._centerH_items {
+  display: flex;
+  justify-content: center;
 }
 ._fit_content {
   height: fit-content;
@@ -81,60 +145,93 @@ body {
 ._fill_available {
   width: -webkit-fill-available;
 }
-
 ._label {
   font: var(--normal_font);
 }
+._container {
+  padding: 0.01rem 0.5rem;
+}
+._container::before , ._container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+._expand {
+    display: flex;
+}
+._collapse {
+    display: none;
+}
+._link {
+	color: #1e90ff;
+}
+._link:hover {
+	color: #ccc;
+}
+._not_link {
+    color: inherit;
+    text-decoration: none;
+}
+._not_link:hover {
+    color: inherit;
+}
+._not_link:active {
+    color: inherit;
+}
+
+
+
 header {
-  background-color: rgb(80 150 255);
+  background-color: var(--header_bg_color);
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 .title, .previww_title {
   font-size: 1.2rem;
-  font-family: var(--_font_family_1);
-  margin: 2rem;
+  font-family: var(--_font_family_0);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   text-transform: uppercase;
   color: #ffffff;
+  width: fit-content;
 }
 .form_submit_cntnr {
   height: fit-content;
-  margin-top: auto;
-  margin-right: 2rem;
-  margin-bottom: auto;
-  margin-left: auto;
 }
 .publish_button {
-  background-color: transparent;
-  color: #ffffff;
-  padding: 0.3rem;
+  background-color: var(--publish_button_bg_color);
+  color: var(--publish_button_color);
+  padding: var(--normal_padding);
   margin: 0 0 0.5rem 0;
-  font: 1.2rem Vardana, sans-serif;
+  font: var(--publish_button_font);
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
-  border: 0.01rem solid #ffffff;
+  border: var(--normal_border);
 }
 .publish_button:active {
-  background-color: rgb(24, 90, 189);
-  color: #ff6969;
-  border: 0.01rem solid #ff6969;
+  background-color: var(--publish_button_active_bg_color);
+  color: var(--publish_button_active_color);
+  border: var(--normal_inverted_border);
 }
 .save_button {
-  background-color: transparent;
-  color: #ffffff;
-  padding: 0.3rem;
+  background-color: var(--save_button_bg_color);
+  color: var(--save_button_color);
+  padding: var(--normal_padding);
   margin: 0.5rem auto 0 auto;
   width: auto;
-  font: 1.2rem Vardana, sans-serif;
+  font: var(--save_button_font);
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
+  border: var(--normal_border);
 }
 .save_button:active {
-  background-color: #e7e7e7;
-  color: #000000;
+  background-color: var(--save_button_active_bg_color);
+  color: var(--save_button_active_color);
 }
 .main {
-  background-color: transparent;
+  background-color: var(--main_bg_color);
   padding: 3rem 2rem 0 2rem;
 }
 .main._inactive {
@@ -155,7 +252,7 @@ header {
   height: fit-content;
   width: 100%;
   border: 0;
-  border-bottom: var(--form_title_border);
+  border-bottom: var(--normal_border);
   outline: none;
   font: var(--form_title_font);
   margin: 0.5rem 0;
@@ -172,7 +269,7 @@ header {
   outline: none;
   padding: 8px 16px!important;
   font: var(--form_select_font);
-  margin: 0.5rem 0.5rem 0.5rem 0;
+  margin: 0.5rem 2rem 0.5rem 0;
 }
 .form_subject:focus, .form_type:focus {
   outline: none;
@@ -186,7 +283,7 @@ header {
 }
 
 .form_title.invalid, .form_subject.invalid, .form_type.invalid {
-  border: 0.01rem solid red;
+  border: var(--invalid_data_border);
 }
 .page_url_cntnr {
   margin: 2rem 0;
@@ -205,15 +302,14 @@ header {
   margin: 0 1rem 0 0;
 }
 .form_mk_array {
-  height: 6rem;
+  height: var(--form_mk_array_height);
   width: 100%;
   border: var(--normal_border);
   margin: 0;
   outline: none;
-  font-size: 1.2rem;
+  font: var(--form_mk_array_font);;
   resize: none;
-  padding: 0.3rem;
-  font-family: var(--form_content_font_family);
+  padding: var(--normal_padding);
 }
 .form_mk_array:focus {
   outline: none;
@@ -227,19 +323,18 @@ header {
 }
 .form_mk_array::-webkit-scrollbar-thumb {
   background-color: transparent;
-  border: 0.01rem solid #ccc;
+  border: var(--scroll_bar_border);
 }
 
 
 .form_content {
-  height: 60vw;
+  height: var(--form_content_height);
   width: 100%;
   border: var(--normal_border);
   outline: none;
-  font-size: 1.2rem;
-  font-family: Vardana, Sans-serif;
+  font: var(--form_content_font);
   margin: 0.5rem 0;
-  padding: 0.3rem;
+  padding: var(--normal_padding);
   resize: none;
 }
 .form_content:focus {
@@ -250,19 +345,22 @@ header {
 }
 .form_content::-webkit-scrollbar-thumb {
   background-color: transparent;
-  border: 0.01rem solid #ccc;
+  border: var(--scroll_bar_border);
 }
 .form_content::-webkit-scrollbar-button {
   display: none;
 }
+.form_content.invalid {
+  border: var(--invalid_data_border);
+}
 .preview_button {
-  background-color: rgb(80 150 255);
-  color: #ffffff;
-  padding: 0.3rem;
+  background-color: var(--preview_button_bg_color);
+  color: var(--preview_button_color);
+  padding: var(--normal_padding);
   margin: 0 0 0.5rem 0;
   height: fit-content;
   width: -webkit-fill-available;
-  font: 1.2rem Vardana, sans-serif;
+  font: var(--preview_button_font);
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
@@ -273,7 +371,7 @@ header {
   overflow: hidden;
 }
 .preview_container._active {
-  background-color: #fff;
+  background-color: var(--preview_container_bg_color);
   position: absolute;
   top: 0;
   left: 0;
@@ -283,30 +381,32 @@ header {
   width: 100vw;
   overflow: hidden;
 }
-.preview_heading {
-  background-color: var(--_color);
+.preview_header {
+  background-color: var(--preview_header_bg_color);
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
-.prvw_ext_btn {
-  background-color: rgb(80 150 255);
-  color: #ffffff;
-  padding: 0.3rem;
-  margin: auto auto auto 0.5rem;
-  height: 1.364rem;
-  width: 4rem;
-  font: 1.2rem Vardana, sans-serif;
+.preview_exit_button {
+  background-color: var(--preview_exit_button_bg_color);
+  color: var(--preview_exit_button_color);
+  padding: var(--normal_padding);
+  height: fit-content;
+  width: fit-content;
+  font: var(--preview_exit_button_font);
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
-  border: 0.01rem solid #ffffff;
+  border: var(--normal_border);
 }
 
 /*
   form_file_upload
 
 */
+
 .form_file_upload {
-  width: 30%;
-  margin: 0 0 0 1rem;
+  width: var(--form_file_upload_width);
+  margin: var(--form_file_upload_margin);
 }
 
 .file_upload_container {
@@ -318,13 +418,13 @@ header {
   overflow: hidden;
   margin: 0 0 0.5rem 0;
 }
-.file_upld_submit {
-  background-color: rgb(80 150 255);
-  color: #ffffff;
-  padding: 0.3rem;
-  margin: 0 0;
+.upload_file_button {
+  background-color: var(--upload_file_button_bg_color);
+  color: var(--upload_file_button_color);
+  padding: var(--normal_padding);
+  margin: 0;
   width: -webkit-fill-available;
-  font: 1.2rem Vardana, sans-serif;
+  font: var(--upload_file_button_font);
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
@@ -332,24 +432,19 @@ header {
 #_file_upld_file {
   display: none;
 }
-.upldd_file_cntnr {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: #fff;
+.uploaded_file_container {
+  background-color: var(--uploaded_file_container_bg_color);
   width: 100%;
   height: fit-content;
-  min-height: 10rem;
-  padding: 0.5rem;
+  min-height: var(--uploaded_file_container_min_height);
+  padding: var(--normal_padding);
   overflow: scroll;
   border: var(--normal_border);
 }
-._file_snippet {
-  background-color: rgb(80 150 255);
-  display: flex;
-  justify-content: center;
-  height: 5rem;
-  width: 5rem;
+.file_snippet {
+  background-color: var(--file_snippet_bg_color);
+  height: var(--file_snippet_height);
+  width: var(--file_snippet_width);
   margin: 0.2rem;
   overflow: hidden;
 }
@@ -419,9 +514,9 @@ header {
 <body>
 <header>
   <div class='_flex_row'>
-    <p class='title'>Create New Page</p>
+    <p class='title _left'>Create New Page</p>
 
-    <div class='form_submit_cntnr'>
+    <div class='form_submit_cntnr _centerV'>
       <p class='publish_button' onclick='_pblsh()'>Publish</p>
       <p class='save_button'onclick='_save()'>Save</p>
     </div>
@@ -460,9 +555,9 @@ header {
 
   <div class="_flex_row _fill_available">
     <div class="_container form_content_container">
-      <textarea form='_crt_pg_form' name='_mk_array' placeholder='Meta keywords...' class='form_mk_array' id='form_mk_array'></textarea>
+      <textarea form='_crt_pg_form' name='_mk_array' spellcheck="false" data-gramm="false" placeholder='Meta keywords...' class='form_mk_array' id='form_mk_array'></textarea>
 
-      <textarea name='_cntnt' class='form_content _fill_available' id='form_content' form='_crt_pg_form' placeholder='Content of the page is...'></textarea>
+      <textarea name='_cntnt' spellcheck="false" data-gramm="false" class='form_content _fill_available' id='form_content' form='_crt_pg_form' placeholder='Content of the page is...'></textarea>
       <p class='preview_button' onclick='preview()'>preview</p>
     </div>
 
@@ -474,10 +569,10 @@ header {
           <input id='_file_upld_subj' type='hidden' name='_subj'/>
           <input id='_file_upld_type' type='hidden' name='_type'/>
           <input type='file' name='_files' multiple='' required='' id='_file_upld_file' onchange='_upld_file()'>
-          <p class='file_upld_submit' onclick='_slct_file_mnu()'>Upload File</p>
+          <p class='upload_file_button' onclick='_slct_file_mnu()'>Upload File</p>
         </form>
         <p class="_label">Uploaded Files:</p>
-        <div class='upldd_file_cntnr _flex_row' id='upldd_file_cntnr'>
+        <div class='uploaded_file_container _flex_row _flex_wrap' id='uploaded_file_container'>
 
         </div>
       </div>
@@ -511,11 +606,6 @@ function gen_path() {
   var _type = document.getElementById('form_type').value;
   document.getElementById('page_url').innerHTML = _subj + '/' + _type + '/' +_title;
 }
-
-document.getElementById('form_content').addEventListener("keypress", function() {
-  gen_path();
-  document.getElementById('_form_cntnt_msg').classList.add("invalid");
-});
 
 function ttl_updt() {
   var ttl;
@@ -588,14 +678,14 @@ function f_f_pnl(data) {
   var f_d = JSON.parse(d)
   if(f_d) {
     var i, doc, htmldt;
-    doc = document.getElementById('upldd_file_cntnr');
+    doc = document.getElementById('uploaded_file_container');
     for(i = 0; i < f_d.length; i++) {
       var f_data = f_d[i];
       if(f_data.name && f_data.url && f_data.type) {
         if(f_data.type.includes("image")) {
-          htmldt = "<div class='_file_snippet'><div class='_file_snippet_top _fill_available'><img class='_upldd_img_file' src='/static" + f_data.url + "'/><div class='_fl_btns _fill_available'><p class='_fit_content _center_v _center_h' onclick='cpy_file_link(this)'><svg aria-hidden='true' viewBox='0 0 16 16' version='1.1' data-view-component='true' height='20' width='20'><path fill-rule='evenodd' d='M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z'></path></svg></p><input id='_file_link' type='text' value='" + f_data.url + "' /><p class='_del_file_btn'><i class=\"material-icons\" style='font-size:1rem;'>&#xe5cd;</i></p></div></div></div>";
+          htmldt = "<div class='file_snippet'><div class='_file_snippet_top _fill_available'><img class='_upldd_img_file' src='/static" + f_data.url + "'/><div class='_fl_btns _fill_available'><p class='_fit_content _centerV _centerH' onclick='cpy_file_link(this)'><svg aria-hidden='true' viewBox='0 0 16 16' version='1.1' data-view-component='true' height='20' width='20'><path fill-rule='evenodd' d='M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z'></path></svg></p><input id='_file_link' type='text' value='" + f_data.url + "' /><p class='_del_file_btn'><i class=\"material-icons\" style='font-size:1rem;'>&#xe5cd;</i></p></div></div></div>";
         } else if(f_data.type.includes("text") || f_data.type.includes("html") || f_data.type.includes("css") || f_data.type.includes("javascript") ||f_data.type.includes("python")) {
-          htmldt = "<div class='_file_snippet'><div class='_file_snippet_top _fill_available'><p class='_upldd_file_nm _fit_content'>" + f_data.name + "</p><div class='_fl_btns _fill_available'><p class='_fit_content _center_v _center_h' onclick='cpy_file_link(this)'><svg aria-hidden='true' viewBox='0 0 16 16' version='1.1' data-view-component='true' height='20' width='20'><path fill-rule='evenodd' d='M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z'></path></svg></p><input id='_file_link' type='text' value='" + f_data.url + "' /><p class='_del_file_btn'><i class=\"material-icons\" style='font-size:1rem;'>&#xe5cd;</i></p></div></div></div>";
+          htmldt = "<div class='file_snippet'><div class='_file_snippet_top _fill_available'><p class='_upldd_file_nm _fit_content'>" + f_data.name + "</p><div class='_fl_btns _fill_available'><p class='_fit_content _centerV _centerH' onclick='cpy_file_link(this)'><svg aria-hidden='true' viewBox='0 0 16 16' version='1.1' data-view-component='true' height='20' width='20'><path fill-rule='evenodd' d='M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z'></path></svg></p><input id='_file_link' type='text' value='" + f_data.url + "' /><p class='_del_file_btn'><i class=\"material-icons\" style='font-size:1rem;'>&#xe5cd;</i></p></div></div></div>";
         } else {
           htmldt = "<p>null</p>";
         }
@@ -613,23 +703,19 @@ function cpy_file_link(el) {
   document.execCommand("copy");
 }
 function _save() {
-  var ttl, subj, typ, cntnt, ttlmsg, subjmsg, typmsg, cntntmsg;
-  ttl = document.getElementById('form_title').value;
-  subj = document.getElementById('form_subject').value;
-  typ = document.getElementById('form_type').value;
-  cntnt = document.getElementById('form_content').value;
-  ttlmsg = document.getElementById('_form_ttl_msg');
-  subjmsg = document.getElementById('form_subject_msg');
-  typmsg = document.getElementById('_form_typ_msg');
-  cntntmsg = document.getElementById('_form_cntnt_msg');
-  if (ttl.length === 0) {
-    ttlmsg.style.display = "block";
-  } else if (subj.length === 0) {
-    subjmsg.style.display = "block";
-  } else if (typ.length === 0) {
-    typmsg.style.display = "block";
-  } else if (cntnt.length === 0) {
-    cntntmsg.style.display = "block";
+  var ttl, subj, typ, cntnt;
+  ttl = document.getElementById('form_title');
+  subj = document.getElementById('form_subject');
+  typ = document.getElementById('form_type');
+  cntnt = document.getElementById('form_content');
+  if (ttl.value.length === 0) {
+    ttl.classList.add("invalid");
+  } else if (subj.value.length === 0) {
+    subj.classList.add("invalid");
+  } else if (typ.value.length === 0) {
+    typ.classList.add("invalid");
+  } else if (cntnt.value.length === 0) {
+    cntnt.classList.add("invalid");
   } else {
     document.getElementById('_crt_pg_form').action = '{% url 'save_new_page' %}';
     document.getElementById('_crt_pg_form').submit();
@@ -641,6 +727,7 @@ function preview() {
   document.getElementById('preview').innerHTML = cntnt;
   document.getElementById('main').className = 'main _inactive'
   document.getElementById('preview_container').className = 'preview_container _active';
+  window.scroll(0, 0);
 }
 function ext_preview() {
   var cntnt = document.getElementById('form_content').value;
@@ -651,9 +738,9 @@ function ext_preview() {
 </script>
 
   <div class='preview_container' id='preview_container'>
-    <div class='preview_heading _flex_row'>
-      <p class='prvw_ext_btn' onclick='ext_preview()'>Close</p>
-      <p class='previww_title'>Preview of your content</p>
+    <div class='preview_header _flex_row'>
+      <p class='previww_title _left'>Preview of your content</p>
+      <p class='preview_exit_button _right' onclick='ext_preview()'>Close</p>
     </div>
     <div class='preview' id='preview'>
     </div>

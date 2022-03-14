@@ -1,12 +1,29 @@
-._pgls_el {
+:root {
+
+  --page_title_font: 1.7rem var(--_font_family_0);
+
+  --page_auther_n_time_font: 1rem var(--_font_family_0);
+
+  --page_view_font: 1rem var(--_font_family_0);
+
+  --page_url_label_font: 1rem var(--_font_family_0);
+  --page_url_font: 1rem "Courier New";
+
+  --delete_page_bg_color: transparent;
+  --delete_page_color: var(--_inverted_color);
+  --delete_page_font: 1rem var(--_font_family_0);
+}
+
+.page_list_element {
   background-color: #ffffff;
   width: -webkit-fill-available;
   padding: 0.5rem;
-  margin-top: 0.9rem;
+  margin-top: 0.6rem;
   margin-left: 0;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.6rem;
   margin-right: 0;
-  box-shadow: 0.4rem 0.4rem 0.9rem #ccc!important;
+  border: var(--normal_border);
+  border-radius: 3px;
 }
 .page_title {
   background-color: #ffffff;
@@ -15,52 +32,44 @@
   width: fit-content;
   margin: 1.2rem 0;
   text-decoration: none;
-  font-size: var(--pg_nm_font_size);
-  font-family: var(--pg_nm_font_family);
+  font: var(--page_title_font);
   border: 0;
 }
-._page-nm:focus {
+.page_title:hover {
   outline: none;
   border: 0;
 }
-._page_athr_time {
-  font-size: var(--_font_size);
-  font-family: var(--_font_family);
+.page_auther_n_time {
+  font: var(--page_auther_n_time_font);
 }
-._page_inf_cntnr {
+.page_info_container {
     width: 20rem;
 }
-._page_inf {
-    height: fit-content;
-    width: -webkit-fill-available;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-._pg_vew {
+.page_views {
   margin-left: 0;
   margin-bottom: auto;
-  font-size: var(--_font_size);
-  font-family: var(--_font_family);
+  font: var(--page_view_font);
 }
-._pg_url {
+.page_url {
   margin-left: 0;
   margin-top: auto;
-  font-size: var(--_font_size);
-  font-family: var(--_font_family);
+  font: var(--page_url_label_font);
+  cursor: pointer;
 }
-._pg_url span {
-  font-family: var(--pg_url_font_family);
+.page_url span {
+  font: var(--page_url_font);
 }
-._pg_delete {
-  background-color: transparent;
-  font-size: var(--_font_size);
-  font-family: var(--_font_family);
+.page_delete {
+  background-color: var(--delete_page_bg_color);
+  font: var(--delete_page_font);
+  color: var(--delete_page_color);
   border: 0;
   outline: none;
   margin: 0;
   padding: 0;
+  cursor: pointer;
 }
-._pg_delete:active {
+.page_delete:active {
   border: 0;
   outline: none;
 }

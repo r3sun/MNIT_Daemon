@@ -1,41 +1,34 @@
-.chg_frm {
+.change_form {
   height: fit-content;
   width: fit-content;
 }
-.chg_heading {
-  padding: 0.2rem;
-  margin: 0.2rem auto 0.2rem 0.1rem;
-  font-family: var(--font_family);
-  font-size: var(--heading_font_size);
-}
-.frm {
+.form {
   margin-left: 3rem;
 }
-.frm_element {
-  margin-top: 1.2rem;
-  margin-bottom: 1.2rem;
-}
-.frm_input {
+.form_input {
+  display: block;
+  margin: 0.5rem 0;
   width: 15rem;
   height: 2rem;
   border: 0.01rem solid #ccc;
   outline: none;
   border-radius: 0.3rem;
 }
-.frm_input:focus {
-  border: 0.01rem solid var(--bg_color);
+.form_input:focus {
+  border: var(--normal_border);
   outline: none;
 }
-.frm_submit {
-  background-color: var(--bg_color);
-  color: #ffffff;
+.form_submit {
+  background-color: var(--button_bg_color);
+  color: var(--button_text_color);
   width: 15rem;
   height: 2rem;
   border: 0;
+  margin: 0.5rem 0;
   outline: none;
   border-radius: 0.3rem;
+  cursor: pointer;
 }
-.frm_submit:focus {
-    border: 0;
-    outline: none;
+.form_submit:hover {
+  outline: none;
 }
